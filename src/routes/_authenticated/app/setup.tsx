@@ -138,7 +138,7 @@ function BusinessStep({ business, onDone }: { business: Business | null; onDone:
   const [busy, setBusy] = useState(false);
 
   async function submit() {
-    if (!values.name?.trim()) { toast.error("Business name is required"); return; }
+    if (!values["name"]?.trim()) { toast.error("Business name is required"); return; }
     setBusy(true);
     if (business) {
       const ok = await saveBusiness(business.id, values);
@@ -147,18 +147,18 @@ function BusinessStep({ business, onDone }: { business: Business | null; onDone:
       return;
     }
     const { data: u } = await supabase.auth.getUser();
-    const base = slugify(values.name) || "hotspot";
+    const base = slugify(values["name"] ?? "") || "hotspot";
     let slug = base;
     for (let i = 0; i < 5; i++) {
       const { error } = await supabase.from("businesses").insert({
         ...Object.fromEntries(Object.entries(values).map(([k, v]) => [k, v || null])),
-        name: values.name.trim(),
-        currency: values.currency || "KES",
+        name: (values["name"] ?? "").trim(),
+        currency: values["currency"] || "KES",
         owner_id: u.user!.id,
         slug,
         setup_step: 3,
-        support_phone: values.phone || null,
-        support_email: values.email || null,
+        support_phone: values["phone"] || null,
+        support_email: values["email"] || null,
       });
       if (!error) {
         setBusy(false);
