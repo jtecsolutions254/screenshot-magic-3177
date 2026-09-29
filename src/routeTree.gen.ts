@@ -30,6 +30,7 @@ import { Route as AuthenticatedAppPortalRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAppRoutersRouteImport } from './routes/_authenticated/app/routers'
 import { Route as AuthenticatedAppSessionsRouteImport } from './routes/_authenticated/app/sessions'
 import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/app/settings'
+import { Route as AuthenticatedAppSetupRouteImport } from './routes/_authenticated/app/setup'
 import { Route as AuthenticatedAppStaffRouteImport } from './routes/_authenticated/app/staff'
 import { Route as AuthenticatedAppSubscribersRouteImport } from './routes/_authenticated/app/subscribers'
 import { Route as AuthenticatedAppVouchersRouteImport } from './routes/_authenticated/app/vouchers'
@@ -150,6 +151,11 @@ const AuthenticatedAppSettingsRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedAppRouteRoute,
   } as any)
+const AuthenticatedAppSetupRoute = AuthenticatedAppSetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
 const AuthenticatedAppStaffRoute = AuthenticatedAppStaffRouteImport.update({
   id: '/staff',
   path: '/staff',
@@ -188,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/app/routers': typeof AuthenticatedAppRoutersRoute
   '/app/sessions': typeof AuthenticatedAppSessionsRoute
   '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/setup': typeof AuthenticatedAppSetupRoute
   '/app/staff': typeof AuthenticatedAppStaffRoute
   '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -212,6 +219,7 @@ export interface FileRoutesByTo {
   '/app/routers': typeof AuthenticatedAppRoutersRoute
   '/app/sessions': typeof AuthenticatedAppSessionsRoute
   '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/setup': typeof AuthenticatedAppSetupRoute
   '/app/staff': typeof AuthenticatedAppStaffRoute
   '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -239,6 +247,7 @@ export interface FileRoutesById {
   '/_authenticated/app/routers': typeof AuthenticatedAppRoutersRoute
   '/_authenticated/app/sessions': typeof AuthenticatedAppSessionsRoute
   '/_authenticated/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/_authenticated/app/setup': typeof AuthenticatedAppSetupRoute
   '/_authenticated/app/staff': typeof AuthenticatedAppStaffRoute
   '/_authenticated/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/_authenticated/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/app/routers'
     | '/app/sessions'
     | '/app/settings'
+    | '/app/setup'
     | '/app/staff'
     | '/app/subscribers'
     | '/app/vouchers'
@@ -291,6 +301,7 @@ export interface FileRouteTypes {
     | '/app/routers'
     | '/app/sessions'
     | '/app/settings'
+    | '/app/setup'
     | '/app/staff'
     | '/app/subscribers'
     | '/app/vouchers'
@@ -317,6 +328,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app/routers'
     | '/_authenticated/app/sessions'
     | '/_authenticated/app/settings'
+    | '/_authenticated/app/setup'
     | '/_authenticated/app/staff'
     | '/_authenticated/app/subscribers'
     | '/_authenticated/app/vouchers'
@@ -478,6 +490,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
       parentRoute: typeof AuthenticatedAppRouteRoute
     }
+    '/_authenticated/app/setup': {
+      id: '/_authenticated/app/setup'
+      path: '/setup'
+      fullPath: '/app/setup'
+      preLoaderRoute: typeof AuthenticatedAppSetupRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
     '/_authenticated/app/staff': {
       id: '/_authenticated/app/staff'
       path: '/staff'
@@ -539,6 +558,7 @@ interface AuthenticatedAppRouteRouteChildren {
   AuthenticatedAppRoutersRoute: typeof AuthenticatedAppRoutersRoute
   AuthenticatedAppSessionsRoute: typeof AuthenticatedAppSessionsRoute
   AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
+  AuthenticatedAppSetupRoute: typeof AuthenticatedAppSetupRoute
   AuthenticatedAppStaffRoute: typeof AuthenticatedAppStaffRoute
   AuthenticatedAppSubscribersRoute: typeof AuthenticatedAppSubscribersRoute
   AuthenticatedAppVouchersRoute: typeof AuthenticatedAppVouchersRoute
@@ -554,6 +574,7 @@ const AuthenticatedAppRouteRouteChildren: AuthenticatedAppRouteRouteChildren = {
   AuthenticatedAppRoutersRoute: AuthenticatedAppRoutersRoute,
   AuthenticatedAppSessionsRoute: AuthenticatedAppSessionsRoute,
   AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
+  AuthenticatedAppSetupRoute: AuthenticatedAppSetupRoute,
   AuthenticatedAppStaffRoute: AuthenticatedAppStaffRoute,
   AuthenticatedAppSubscribersRoute: AuthenticatedAppSubscribersRoute,
   AuthenticatedAppVouchersRoute: AuthenticatedAppVouchersRoute,
