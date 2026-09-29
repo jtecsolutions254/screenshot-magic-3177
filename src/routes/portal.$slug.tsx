@@ -115,11 +115,11 @@ function PortalPage() {
               <Check className="size-7" />
             </span>
             <h1 className="mt-4 font-display text-xl font-semibold">You're connected</h1>
-            <p className="mt-1 text-sm text-white/60">{selected.name} · {selected.speedLabel}</p>
+            <p className="mt-1 text-sm text-white/60">{selected?.name} · {selected?.speedLabel}</p>
 
             <div className="mt-6 grid grid-cols-2 gap-3 text-left">
               <Tile icon={Clock} label="Time left" value={formatTime(remaining)} />
-              <Tile icon={Gauge} label="Data" value={selected.dataLabel} />
+              <Tile icon={Gauge} label="Data" value={selected?.dataLabel ?? ""} />
             </div>
 
             <Button
@@ -169,11 +169,11 @@ function PortalPage() {
                     onClick={() => setSelected(p)}
                     className={cn(
                       "flex w-full items-center justify-between rounded-xl border p-4 text-left transition",
-                      selected.id === p.id
+                      selected?.id === p.id
                         ? "bg-white/[0.07]"
                         : "border-white/10 bg-white/[0.03] hover:bg-white/[0.06]",
                     )}
-                    style={selected.id === p.id ? { borderColor: branding.primary } : undefined}
+                    style={selected?.id === p.id ? { borderColor: branding.primary } : undefined}
                   >
                     <div>
                       <p className="font-semibold">
@@ -217,7 +217,7 @@ function PortalPage() {
                     </>
                   ) : (
                     <>
-                      Pay {branding.currency} {selected.price.toLocaleString()} & connect
+                      Pay {branding.currency} {(selected?.price ?? 0).toLocaleString()} & connect
                     </>
                   )}
                 </Button>
