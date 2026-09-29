@@ -6,6 +6,10 @@ import {
   Users,
   CreditCard,
   Signal,
+  UserPlus,
+  PlugZap,
+  Wallet,
+  Wifi,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -14,9 +18,12 @@ import { cn } from "@/lib/utils";
 const nav: { to: string; label: string; icon: LucideIcon }[] = [
   { to: "/", label: "Overview", icon: LayoutDashboard },
   { to: "/businesses", label: "Businesses", icon: Building2 },
+  { to: "/onboarding", label: "New business", icon: UserPlus },
   { to: "/routers", label: "Routers", icon: RouterIcon },
+  { to: "/router-setup", label: "Connect router", icon: PlugZap },
   { to: "/subscribers", label: "Subscribers", icon: Users },
   { to: "/payments", label: "Payments", icon: CreditCard },
+  { to: "/gateways", label: "Payment setup", icon: Wallet },
 ];
 
 export function AdminShell({
@@ -69,11 +76,21 @@ export function AdminShell({
             })}
           </nav>
 
-          <div className="mt-auto rounded-xl border border-sidebar-border bg-sidebar-accent/50 p-3">
-            <p className="text-xs font-medium text-sidebar-foreground">Demo data</p>
-            <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
-              Figures are sample values. Router and payment connections come next.
-            </p>
+          <div className="mt-auto space-y-3">
+            <Link
+              to="/portal/$slug"
+              params={{ slug: "kwetunet" }}
+              className="flex items-center gap-2 rounded-xl border border-sidebar-border bg-sidebar-accent/50 px-3 py-2.5 text-xs font-medium text-sidebar-foreground transition-colors hover:bg-sidebar-accent"
+            >
+              <Wifi className="size-4 text-primary" />
+              Preview customer page
+            </Link>
+            <div className="rounded-xl border border-sidebar-border bg-sidebar-accent/50 p-3">
+              <p className="text-xs font-medium text-sidebar-foreground">Demo data</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
+                Figures are sample values until live routers and payments are linked.
+              </p>
+            </div>
           </div>
         </aside>
 

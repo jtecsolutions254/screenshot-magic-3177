@@ -11,9 +11,13 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessesRouteImport } from './routes/businesses'
+import { Route as GatewaysRouteImport } from './routes/gateways'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as RouterSetupRouteImport } from './routes/router-setup'
 import { Route as RoutersRouteImport } from './routes/routers'
 import { Route as SubscribersRouteImport } from './routes/subscribers'
+import { Route as PortalSlugRouteImport } from './routes/portal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,9 +29,24 @@ const BusinessesRoute = BusinessesRouteImport.update({
   path: '/businesses',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GatewaysRoute = GatewaysRouteImport.update({
+  id: '/gateways',
+  path: '/gateways',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PaymentsRoute = PaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RouterSetupRoute = RouterSetupRouteImport.update({
+  id: '/router-setup',
+  path: '/router-setup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RoutersRoute = RoutersRouteImport.update({
@@ -40,44 +59,92 @@ const SubscribersRoute = SubscribersRouteImport.update({
   path: '/subscribers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortalSlugRoute = PortalSlugRouteImport.update({
+  id: '/portal/$slug',
+  path: '/portal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+  fullPaths:
+    | '/'
+    | '/businesses'
+    | '/gateways'
+    | '/onboarding'
+    | '/payments'
+    | '/router-setup'
+    | '/routers'
+    | '/subscribers'
+    | '/portal/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+  to:
+    | '/'
+    | '/businesses'
+    | '/gateways'
+    | '/onboarding'
+    | '/payments'
+    | '/router-setup'
+    | '/routers'
+    | '/subscribers'
+    | '/portal/$slug'
   id:
-    '__root__' | '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+    | '__root__'
+    | '/'
+    | '/businesses'
+    | '/gateways'
+    | '/onboarding'
+    | '/payments'
+    | '/router-setup'
+    | '/routers'
+    | '/subscribers'
+    | '/portal/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BusinessesRoute: typeof BusinessesRoute
+  GatewaysRoute: typeof GatewaysRoute
+  OnboardingRoute: typeof OnboardingRoute
   PaymentsRoute: typeof PaymentsRoute
+  RouterSetupRoute: typeof RouterSetupRoute
   RoutersRoute: typeof RoutersRoute
   SubscribersRoute: typeof SubscribersRoute
+  PortalSlugRoute: typeof PortalSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -96,11 +163,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gateways': {
+      id: '/gateways'
+      path: '/gateways'
+      fullPath: '/gateways'
+      preLoaderRoute: typeof GatewaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/payments': {
       id: '/payments'
       path: '/payments'
       fullPath: '/payments'
       preLoaderRoute: typeof PaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/router-setup': {
+      id: '/router-setup'
+      path: '/router-setup'
+      fullPath: '/router-setup'
+      preLoaderRoute: typeof RouterSetupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/routers': {
@@ -117,15 +205,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubscribersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portal/$slug': {
+      id: '/portal/$slug'
+      path: '/portal/$slug'
+      fullPath: '/portal/$slug'
+      preLoaderRoute: typeof PortalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BusinessesRoute: BusinessesRoute,
+  GatewaysRoute: GatewaysRoute,
+  OnboardingRoute: OnboardingRoute,
   PaymentsRoute: PaymentsRoute,
+  RouterSetupRoute: RouterSetupRoute,
   RoutersRoute: RoutersRoute,
   SubscribersRoute: SubscribersRoute,
+  PortalSlugRoute: PortalSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
