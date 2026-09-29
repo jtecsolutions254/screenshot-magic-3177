@@ -2,17 +2,28 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Wifi, Ticket, Smartphone, Clock, Gauge, ShieldCheck, Loader2, Check } from "lucide-react";
-import { getTenantConfig, type HotspotPackage } from "@/lib/tenant-config";
+import type { HotspotPackage } from "@/lib/tenant-config";
+import { getPortal } from "@/lib/portal.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/portal/$slug")({
-  loader: ({ params }) => {
-    const config = getTenantConfig(params.slug);
+  loader: async ({ params }) => {
+    const config = await getPortal({ data: { slug: params.slug } });
     if (!config) throw notFound();
     return config;
   },
+  notFoundComponent: () => (
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 text-center text-muted-foreground">
+      This hotspot page isn't live yet.
+    </div>
+  ),
+  errorComponent: () => (
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 text-center text-muted-foreground">
+      We couldn't load this hotspot page. Please try again.
+    </div>
+  ),
   head: ({ loaderData }) => {
     const name = loaderData?.branding.name ?? "Hotspot";
     return {
@@ -36,7 +47,7 @@ type Stage = "idle" | "prompting" | "connected";
 function PortalPage() {
   const { branding, packages } = Route.useLoaderData();
   const [mode, setMode] = useState<Mode>("buy");
-  const [selected, setSelected] = useState<HotspotPackage>(packages[1] ?? packages[0]!);
+  const [selected, setSelected] = useState<HotspotPackage | undefined>(packages.find((p) => p.popular) ?? packages[0]);
   const [phone, setPhone] = useState("");
   const [voucher, setVoucher] = useState("");
   const [stage, setStage] = useState<Stage>("idle");
