@@ -9,7 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
 import { Route as AuthenticatedAppRouteRouteImport } from './routes/_authenticated/app/route'
 import { Route as PortalSlugRouteImport } from './routes/portal.$slug'
@@ -35,8 +39,28 @@ import { Route as AuthenticatedAppStaffRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedAppSubscribersRouteImport } from './routes/_authenticated/app/subscribers'
 import { Route as AuthenticatedAppVouchersRouteImport } from './routes/_authenticated/app/vouchers'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
@@ -175,7 +199,10 @@ const AuthenticatedAppVouchersRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AuthenticatedRouteRouteWithChildren
+  '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/pricing': typeof PricingRoute
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
@@ -202,7 +229,10 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AuthenticatedRouteRouteWithChildren
+  '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/pricing': typeof PricingRoute
   '/portal/$slug': typeof PortalSlugRoute
   '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
   '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
@@ -228,7 +258,11 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/pricing': typeof PricingRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
@@ -258,6 +292,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
+    | '/features'
+    | '/pricing'
     | '/admin'
     | '/app'
     | '/portal/$slug'
@@ -285,6 +322,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contact'
+    | '/features'
+    | '/pricing'
     | '/portal/$slug'
     | '/admin/businesses'
     | '/admin/gateways'
@@ -309,7 +349,11 @@ export interface FileRouteTypes {
     | '/app'
   id:
     | '__root__'
+    | '/'
     | '/_authenticated'
+    | '/contact'
+    | '/features'
+    | '/pricing'
     | '/_authenticated/admin'
     | '/_authenticated/app'
     | '/portal/$slug'
@@ -337,17 +381,49 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  FeaturesRoute: typeof FeaturesRoute
+  PricingRoute: typeof PricingRoute
   PortalSlugRoute: typeof PortalSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/admin': {
@@ -600,7 +676,11 @@ const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  ContactRoute: ContactRoute,
+  FeaturesRoute: FeaturesRoute,
+  PricingRoute: PricingRoute,
   PortalSlugRoute: PortalSlugRoute,
 }
 export const routeTree = rootRouteImport
