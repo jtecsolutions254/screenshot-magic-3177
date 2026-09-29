@@ -3,7 +3,7 @@ import { AdminShell } from "@/components/admin-shell";
 import { StatusPill } from "@/components/status-pill";
 import { formatMoney, tenants } from "@/lib/platform-data";
 
-export const Route = createFileRoute("/businesses")({
+export const Route = createFileRoute("/_authenticated/admin/businesses")({
   head: () => ({
     meta: [
       { title: "Hotspot Businesses | Kwetu Connection" },

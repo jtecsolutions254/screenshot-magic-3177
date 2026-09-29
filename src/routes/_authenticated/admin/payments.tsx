@@ -3,7 +3,7 @@ import { AdminShell } from "@/components/admin-shell";
 import { StatusPill } from "@/components/status-pill";
 import { formatMoney, payments, platformStats } from "@/lib/platform-data";
 
-export const Route = createFileRoute("/payments")({
+export const Route = createFileRoute("/_authenticated/admin/payments")({
   head: () => ({
     meta: [
       { title: "Payments | Kwetu Connection" },

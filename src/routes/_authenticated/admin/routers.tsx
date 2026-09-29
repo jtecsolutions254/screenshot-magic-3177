@@ -3,7 +3,7 @@ import { AdminShell } from "@/components/admin-shell";
 import { StatusPill } from "@/components/status-pill";
 import { routers } from "@/lib/platform-data";
 
-export const Route = createFileRoute("/routers")({
+export const Route = createFileRoute("/_authenticated/admin/routers")({
   head: () => ({
     meta: [
       { title: "Router Fleet | Kwetu Connection" },

@@ -30,7 +30,7 @@ import {
   tenants,
 } from "@/lib/platform-data";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_authenticated/admin/")({
   head: () => ({
     meta: [
       { title: "Platform Overview | Kwetu Connection" },

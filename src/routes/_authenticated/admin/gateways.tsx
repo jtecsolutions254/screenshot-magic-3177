@@ -10,7 +10,7 @@ import { StatusPill } from "@/components/status-pill";
 import { gatewayDrivers, tenantConfigs, tenantOf, firstTenantSlug, type GatewayId } from "@/lib/tenant-config";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/gateways")({
+export const Route = createFileRoute("/_authenticated/admin/gateways")({
   head: () => ({
     meta: [
       { title: "Payment connections — Kwetu Connection" },
