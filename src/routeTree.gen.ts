@@ -21,11 +21,14 @@ import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRouterSetupRouteImport } from './routes/_authenticated/admin/router-setup'
 import { Route as AuthenticatedAdminRoutersRouteImport } from './routes/_authenticated/admin/routers'
 import { Route as AuthenticatedAdminSubscribersRouteImport } from './routes/_authenticated/admin/subscribers'
+import { Route as AuthenticatedAppGatewaysRouteImport } from './routes/_authenticated/app/gateways'
 import { Route as AuthenticatedAppLocationsRouteImport } from './routes/_authenticated/app/locations'
 import { Route as AuthenticatedAppPaymentsRouteImport } from './routes/_authenticated/app/payments'
 import { Route as AuthenticatedAppPlansRouteImport } from './routes/_authenticated/app/plans'
+import { Route as AuthenticatedAppPortalRouteImport } from './routes/_authenticated/app/portal'
 import { Route as AuthenticatedAppRoutersRouteImport } from './routes/_authenticated/app/routers'
 import { Route as AuthenticatedAppSessionsRouteImport } from './routes/_authenticated/app/sessions'
+import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/app/settings'
 import { Route as AuthenticatedAppStaffRouteImport } from './routes/_authenticated/app/staff'
 import { Route as AuthenticatedAppSubscribersRouteImport } from './routes/_authenticated/app/subscribers'
 import { Route as AuthenticatedAppVouchersRouteImport } from './routes/_authenticated/app/vouchers'
@@ -96,6 +99,12 @@ const AuthenticatedAdminSubscribersRoute =
     path: '/subscribers',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAppGatewaysRoute =
+  AuthenticatedAppGatewaysRouteImport.update({
+    id: '/gateways',
+    path: '/gateways',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
 const AuthenticatedAppLocationsRoute =
   AuthenticatedAppLocationsRouteImport.update({
     id: '/locations',
@@ -113,6 +122,11 @@ const AuthenticatedAppPlansRoute = AuthenticatedAppPlansRouteImport.update({
   path: '/plans',
   getParentRoute: () => AuthenticatedAppRouteRoute,
 } as any)
+const AuthenticatedAppPortalRoute = AuthenticatedAppPortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
 const AuthenticatedAppRoutersRoute = AuthenticatedAppRoutersRouteImport.update({
   id: '/routers',
   path: '/routers',
@@ -122,6 +136,12 @@ const AuthenticatedAppSessionsRoute =
   AuthenticatedAppSessionsRouteImport.update({
     id: '/sessions',
     path: '/sessions',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppSettingsRoute =
+  AuthenticatedAppSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
     getParentRoute: () => AuthenticatedAppRouteRoute,
   } as any)
 const AuthenticatedAppStaffRoute = AuthenticatedAppStaffRouteImport.update({
@@ -154,11 +174,14 @@ export interface FileRoutesByFullPath {
   '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/gateways': typeof AuthenticatedAppGatewaysRoute
   '/app/locations': typeof AuthenticatedAppLocationsRoute
   '/app/payments': typeof AuthenticatedAppPaymentsRoute
   '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/portal': typeof AuthenticatedAppPortalRoute
   '/app/routers': typeof AuthenticatedAppRoutersRoute
   '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
   '/app/staff': typeof AuthenticatedAppStaffRoute
   '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -175,11 +198,14 @@ export interface FileRoutesByTo {
   '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/gateways': typeof AuthenticatedAppGatewaysRoute
   '/app/locations': typeof AuthenticatedAppLocationsRoute
   '/app/payments': typeof AuthenticatedAppPaymentsRoute
   '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/portal': typeof AuthenticatedAppPortalRoute
   '/app/routers': typeof AuthenticatedAppRoutersRoute
   '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
   '/app/staff': typeof AuthenticatedAppStaffRoute
   '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -198,11 +224,14 @@ export interface FileRoutesById {
   '/_authenticated/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/_authenticated/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/_authenticated/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/_authenticated/app/gateways': typeof AuthenticatedAppGatewaysRoute
   '/_authenticated/app/locations': typeof AuthenticatedAppLocationsRoute
   '/_authenticated/app/payments': typeof AuthenticatedAppPaymentsRoute
   '/_authenticated/app/plans': typeof AuthenticatedAppPlansRoute
+  '/_authenticated/app/portal': typeof AuthenticatedAppPortalRoute
   '/_authenticated/app/routers': typeof AuthenticatedAppRoutersRoute
   '/_authenticated/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/_authenticated/app/settings': typeof AuthenticatedAppSettingsRoute
   '/_authenticated/app/staff': typeof AuthenticatedAppStaffRoute
   '/_authenticated/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/_authenticated/app/vouchers': typeof AuthenticatedAppVouchersRoute
@@ -222,11 +251,14 @@ export interface FileRouteTypes {
     | '/admin/router-setup'
     | '/admin/routers'
     | '/admin/subscribers'
+    | '/app/gateways'
     | '/app/locations'
     | '/app/payments'
     | '/app/plans'
+    | '/app/portal'
     | '/app/routers'
     | '/app/sessions'
+    | '/app/settings'
     | '/app/staff'
     | '/app/subscribers'
     | '/app/vouchers'
@@ -243,11 +275,14 @@ export interface FileRouteTypes {
     | '/admin/router-setup'
     | '/admin/routers'
     | '/admin/subscribers'
+    | '/app/gateways'
     | '/app/locations'
     | '/app/payments'
     | '/app/plans'
+    | '/app/portal'
     | '/app/routers'
     | '/app/sessions'
+    | '/app/settings'
     | '/app/staff'
     | '/app/subscribers'
     | '/app/vouchers'
@@ -265,11 +300,14 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/router-setup'
     | '/_authenticated/admin/routers'
     | '/_authenticated/admin/subscribers'
+    | '/_authenticated/app/gateways'
     | '/_authenticated/app/locations'
     | '/_authenticated/app/payments'
     | '/_authenticated/app/plans'
+    | '/_authenticated/app/portal'
     | '/_authenticated/app/routers'
     | '/_authenticated/app/sessions'
+    | '/_authenticated/app/settings'
     | '/_authenticated/app/staff'
     | '/_authenticated/app/subscribers'
     | '/_authenticated/app/vouchers'
@@ -367,6 +405,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSubscribersRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/app/gateways': {
+      id: '/_authenticated/app/gateways'
+      path: '/gateways'
+      fullPath: '/app/gateways'
+      preLoaderRoute: typeof AuthenticatedAppGatewaysRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
     '/_authenticated/app/locations': {
       id: '/_authenticated/app/locations'
       path: '/locations'
@@ -388,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAppPlansRouteImport
       parentRoute: typeof AuthenticatedAppRouteRoute
     }
+    '/_authenticated/app/portal': {
+      id: '/_authenticated/app/portal'
+      path: '/portal'
+      fullPath: '/app/portal'
+      preLoaderRoute: typeof AuthenticatedAppPortalRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
     '/_authenticated/app/routers': {
       id: '/_authenticated/app/routers'
       path: '/routers'
@@ -400,6 +452,13 @@ declare module '@tanstack/react-router' {
       path: '/sessions'
       fullPath: '/app/sessions'
       preLoaderRoute: typeof AuthenticatedAppSessionsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/settings': {
+      id: '/_authenticated/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
       parentRoute: typeof AuthenticatedAppRouteRoute
     }
     '/_authenticated/app/staff': {
@@ -455,22 +514,28 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedAppRouteRouteChildren {
+  AuthenticatedAppGatewaysRoute: typeof AuthenticatedAppGatewaysRoute
   AuthenticatedAppLocationsRoute: typeof AuthenticatedAppLocationsRoute
   AuthenticatedAppPaymentsRoute: typeof AuthenticatedAppPaymentsRoute
   AuthenticatedAppPlansRoute: typeof AuthenticatedAppPlansRoute
+  AuthenticatedAppPortalRoute: typeof AuthenticatedAppPortalRoute
   AuthenticatedAppRoutersRoute: typeof AuthenticatedAppRoutersRoute
   AuthenticatedAppSessionsRoute: typeof AuthenticatedAppSessionsRoute
+  AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
   AuthenticatedAppStaffRoute: typeof AuthenticatedAppStaffRoute
   AuthenticatedAppSubscribersRoute: typeof AuthenticatedAppSubscribersRoute
   AuthenticatedAppVouchersRoute: typeof AuthenticatedAppVouchersRoute
 }
 
 const AuthenticatedAppRouteRouteChildren: AuthenticatedAppRouteRouteChildren = {
+  AuthenticatedAppGatewaysRoute: AuthenticatedAppGatewaysRoute,
   AuthenticatedAppLocationsRoute: AuthenticatedAppLocationsRoute,
   AuthenticatedAppPaymentsRoute: AuthenticatedAppPaymentsRoute,
   AuthenticatedAppPlansRoute: AuthenticatedAppPlansRoute,
+  AuthenticatedAppPortalRoute: AuthenticatedAppPortalRoute,
   AuthenticatedAppRoutersRoute: AuthenticatedAppRoutersRoute,
   AuthenticatedAppSessionsRoute: AuthenticatedAppSessionsRoute,
+  AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
   AuthenticatedAppStaffRoute: AuthenticatedAppStaffRoute,
   AuthenticatedAppSubscribersRoute: AuthenticatedAppSubscribersRoute,
   AuthenticatedAppVouchersRoute: AuthenticatedAppVouchersRoute,
