@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessesRouteImport } from './routes/businesses'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as RoutersRouteImport } from './routes/routers'
 import { Route as SubscribersRouteImport } from './routes/subscribers'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const BusinessesRoute = BusinessesRouteImport.update({
   id: '/businesses',
   path: '/businesses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaymentsRoute = PaymentsRouteImport.update({
@@ -44,6 +50,7 @@ const SubscribersRoute = SubscribersRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
@@ -59,22 +67,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+  fullPaths:
+    | '/'
+    | '/businesses'
+    | '/onboarding'
+    | '/payments'
+    | '/routers'
+    | '/subscribers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+  to:
+    | '/'
+    | '/businesses'
+    | '/onboarding'
+    | '/payments'
+    | '/routers'
+    | '/subscribers'
   id:
-    '__root__' | '/' | '/businesses' | '/payments' | '/routers' | '/subscribers'
+    | '__root__'
+    | '/'
+    | '/businesses'
+    | '/onboarding'
+    | '/payments'
+    | '/routers'
+    | '/subscribers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BusinessesRoute: typeof BusinessesRoute
+  OnboardingRoute: typeof OnboardingRoute
   PaymentsRoute: typeof PaymentsRoute
   RoutersRoute: typeof RoutersRoute
   SubscribersRoute: typeof SubscribersRoute
@@ -94,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/businesses'
       fullPath: '/businesses'
       preLoaderRoute: typeof BusinessesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/payments': {
@@ -123,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BusinessesRoute: BusinessesRoute,
+  OnboardingRoute: OnboardingRoute,
   PaymentsRoute: PaymentsRoute,
   RoutersRoute: RoutersRoute,
   SubscribersRoute: SubscribersRoute,
