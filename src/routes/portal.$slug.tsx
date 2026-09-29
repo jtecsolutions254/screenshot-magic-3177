@@ -2,17 +2,28 @@ import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Wifi, Ticket, Smartphone, Clock, Gauge, ShieldCheck, Loader2, Check } from "lucide-react";
-import { getTenantConfig, type HotspotPackage } from "@/lib/tenant-config";
+import type { HotspotPackage } from "@/lib/tenant-config";
+import { getPortal } from "@/lib/portal.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/portal/$slug")({
-  loader: ({ params }) => {
-    const config = getTenantConfig(params.slug);
+  loader: async ({ params }) => {
+    const config = await getPortal({ data: { slug: params.slug } });
     if (!config) throw notFound();
     return config;
   },
+  notFoundComponent: () => (
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 text-center text-muted-foreground">
+      This hotspot page isn't live yet.
+    </div>
+  ),
+  errorComponent: () => (
+    <div className="flex min-h-screen items-center justify-center bg-background p-6 text-center text-muted-foreground">
+      We couldn't load this hotspot page. Please try again.
+    </div>
+  ),
   head: ({ loaderData }) => {
     const name = loaderData?.branding.name ?? "Hotspot";
     return {
@@ -36,7 +47,7 @@ type Stage = "idle" | "prompting" | "connected";
 function PortalPage() {
   const { branding, packages } = Route.useLoaderData();
   const [mode, setMode] = useState<Mode>("buy");
-  const [selected, setSelected] = useState<HotspotPackage>(packages[1] ?? packages[0]!);
+  const [selected, setSelected] = useState<HotspotPackage | undefined>(packages.find((p) => p.popular) ?? packages[0]);
   const [phone, setPhone] = useState("");
   const [voucher, setVoucher] = useState("");
   const [stage, setStage] = useState<Stage>("idle");
@@ -104,11 +115,11 @@ function PortalPage() {
               <Check className="size-7" />
             </span>
             <h1 className="mt-4 font-display text-xl font-semibold">You're connected</h1>
-            <p className="mt-1 text-sm text-white/60">{selected.name} · {selected.speedLabel}</p>
+            <p className="mt-1 text-sm text-white/60">{selected?.name} · {selected?.speedLabel}</p>
 
             <div className="mt-6 grid grid-cols-2 gap-3 text-left">
               <Tile icon={Clock} label="Time left" value={formatTime(remaining)} />
-              <Tile icon={Gauge} label="Data" value={selected.dataLabel} />
+              <Tile icon={Gauge} label="Data" value={selected?.dataLabel ?? ""} />
             </div>
 
             <Button
@@ -158,11 +169,11 @@ function PortalPage() {
                     onClick={() => setSelected(p)}
                     className={cn(
                       "flex w-full items-center justify-between rounded-xl border p-4 text-left transition",
-                      selected.id === p.id
+                      selected?.id === p.id
                         ? "bg-white/[0.07]"
                         : "border-white/10 bg-white/[0.03] hover:bg-white/[0.06]",
                     )}
-                    style={selected.id === p.id ? { borderColor: branding.primary } : undefined}
+                    style={selected?.id === p.id ? { borderColor: branding.primary } : undefined}
                   >
                     <div>
                       <p className="font-semibold">
@@ -206,7 +217,7 @@ function PortalPage() {
                     </>
                   ) : (
                     <>
-                      Pay {branding.currency} {selected.price.toLocaleString()} & connect
+                      Pay {branding.currency} {(selected?.price ?? 0).toLocaleString()} & connect
                     </>
                   )}
                 </Button>

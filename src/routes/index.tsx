@@ -1,304 +1,137 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Building2,
   Router as RouterIcon,
-  Users,
-  Wifi,
-  Wallet,
-  TrendingUp,
+  Smartphone,
+  Ticket,
+  BarChart3,
+  Palette,
   ShieldCheck,
-  Activity,
+  ArrowRight,
 } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
-import { AdminShell } from "@/components/admin-shell";
-import { StatCard } from "@/components/stat-card";
-import { StatusPill } from "@/components/status-pill";
-import {
-  formatMoney,
-  payments,
-  platformStats,
-  revenueSeries,
-  routers,
-  tenants,
-} from "@/lib/platform-data";
+import { SiteShell } from "@/components/site-chrome";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Platform Overview | Kwetu Connection" },
+      { title: "Kwetu Connection — Powering Smarter Wi-Fi Businesses" },
       {
         name: "description",
         content:
-          "Central console for Kwetu Connection: monitor hotspot businesses, routers, subscribers and revenue in one place.",
+          "Launch and run your paid Wi-Fi hotspot business: MikroTik routers, branded customer page, M-Pesa payments, vouchers and reports.",
       },
-      { property: "og:title", content: "Platform Overview | Kwetu Connection" },
+      { property: "og:title", content: "Kwetu Connection — Powering Smarter Wi-Fi Businesses" },
       {
         property: "og:description",
-        content:
-          "Monitor every hotspot business, router and payment across the Kwetu Connection platform.",
+        content: "Everything you need to sell Wi-Fi: routers, payments, vouchers and a branded customer page.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Overview,
+  component: Home,
 });
 
-function Overview() {
+const steps = [
+  { n: "01", title: "Create your account", body: "Sign up and name your hotspot business in minutes." },
+  { n: "02", title: "Paste one setup code", body: "Connect your MikroTik router with a single copy-paste." },
+  { n: "03", title: "Start selling Wi-Fi", body: "Customers pick a package, pay by phone and get online." },
+];
+
+const features = [
+  { icon: Smartphone, title: "Mobile money built in", body: "M-Pesa, Paystack and Flutterwave. Switch any time." },
+  { icon: Palette, title: "Your brand, your page", body: "Your logo, colours and packages on the Wi-Fi sign-in page." },
+  { icon: RouterIcon, title: "Router monitoring", body: "See which routers are online and who's connected." },
+  { icon: Ticket, title: "Vouchers", body: "Print codes to sell for cash at the counter." },
+  { icon: BarChart3, title: "Revenue reports", body: "Daily and monthly takings per location." },
+  { icon: ShieldCheck, title: "Private & secure", body: "Routers connect through a private tunnel, never exposed." },
+];
+
+function Home() {
   return (
-    <AdminShell
-      title="Platform overview"
-      description="Everything happening across every hotspot business on Kwetu Connection, in one view."
-    >
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard
-          label="Revenue today"
-          value={formatMoney(platformStats.revenueToday)}
-          hint={`${formatMoney(platformStats.revenueMonth)} this month`}
-          icon={Wallet}
-          highlight
-        />
-        <StatCard
-          label="Active sessions"
-          value={platformStats.activeSessions.toLocaleString()}
-          hint="Users connected right now"
-          icon={Wifi}
-        />
-        <StatCard
-          label="Businesses"
-          value={`${platformStats.activeTenants} / ${platformStats.totalTenants}`}
-          hint="Active of total signed up"
-          icon={Building2}
-        />
-        <StatCard
-          label="Routers online"
-          value={`${platformStats.onlineRouters} / ${platformStats.totalRouters}`}
-          hint="Reporting in the last 5 minutes"
-          icon={RouterIcon}
-        />
-      </div>
-
-      <div className="mt-6 grid gap-6 xl:grid-cols-3">
-        <section className="panel p-6 xl:col-span-2">
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <h2 className="text-lg font-semibold">Revenue and sessions</h2>
-              <p className="text-sm text-muted-foreground">Last 7 days, all businesses</p>
-            </div>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-success/30 bg-success/12 px-2.5 py-1 text-xs font-medium text-success">
-              <TrendingUp className="size-3.5" /> +18.4% week on week
-            </span>
-          </div>
-
-          <div className="mt-6 h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={revenueSeries} margin={{ left: -12, right: 8, top: 8 }}>
-                <defs>
-                  <linearGradient id="rev" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--color-chart-1)" stopOpacity={0.5} />
-                    <stop offset="100%" stopColor="var(--color-chart-1)" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="ses" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="var(--color-chart-2)" stopOpacity={0.35} />
-                    <stop offset="100%" stopColor="var(--color-chart-2)" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid stroke="var(--color-border)" vertical={false} />
-                <XAxis
-                  dataKey="day"
-                  stroke="var(--color-muted-foreground)"
-                  tickLine={false}
-                  axisLine={false}
-                  fontSize={12}
-                />
-                <YAxis
-                  yAxisId="left"
-                  stroke="var(--color-muted-foreground)"
-                  tickLine={false}
-                  axisLine={false}
-                  fontSize={12}
-                  width={64}
-                />
-                <YAxis
-                  yAxisId="right"
-                  orientation="right"
-                  stroke="var(--color-muted-foreground)"
-                  tickLine={false}
-                  axisLine={false}
-                  fontSize={12}
-                  width={48}
-                />
-                <Tooltip
-                  contentStyle={{
-                    background: "var(--color-popover)",
-                    border: "1px solid var(--color-border)",
-                    borderRadius: "12px",
-                    color: "var(--color-popover-foreground)",
-                    fontSize: 12,
-                  }}
-                />
-                <Area
-                  type="monotone"
-                  yAxisId="left"
-                  dataKey="revenue"
-                  stroke="var(--color-chart-1)"
-                  fill="url(#rev)"
-                  strokeWidth={2}
-                />
-                <Area
-                  type="monotone"
-                  yAxisId="right"
-                  dataKey="sessions"
-                  stroke="var(--color-chart-2)"
-                  fill="url(#ses)"
-                  strokeWidth={2}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </section>
-
-        <section className="panel p-6">
-          <h2 className="text-lg font-semibold">System health</h2>
-          <p className="text-sm text-muted-foreground">Mocked until services are connected</p>
-
-          <ul className="mt-5 space-y-3">
-            {[
-              { name: "Payment success rate", value: `${platformStats.paymentSuccessRate}%`, ok: true },
-              { name: "RADIUS service", value: "Not connected", ok: false },
-              { name: "Router VPN tunnel", value: "Not connected", ok: false },
-              { name: "Captive portal engine", value: "Planned", ok: false },
-            ].map((row) => (
-              <li
-                key={row.name}
-                className="flex items-center justify-between rounded-lg border border-border bg-muted/40 px-3 py-2.5"
-              >
-                <span className="flex items-center gap-2 text-sm text-foreground">
-                  {row.ok ? (
-                    <ShieldCheck className="size-4 text-success" />
-                  ) : (
-                    <Activity className="size-4 text-muted-foreground" />
-                  )}
-                  {row.name}
-                </span>
-                <span className="text-xs text-muted-foreground">{row.value}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-6 rounded-xl border border-primary/25 bg-primary/8 p-4">
-            <p className="text-sm font-medium text-primary">Next step</p>
-            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-              Add business onboarding and the branded customer portal, then connect real routers
-              and payments.
+    <SiteShell>
+      <section className="grid-backdrop border-b border-border">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.15fr_1fr] lg:py-28">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-primary">
+              Hotspot business platform
             </p>
+            <h1 className="mt-4 font-display text-4xl font-bold leading-[1.05] sm:text-6xl">
+              Powering smarter
+              <br />
+              <span className="text-primary">Wi-Fi businesses.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
+              Kwetu Connection gives you everything to run paid Wi-Fi: connect your routers, set your
+              prices, take mobile money and watch your revenue — from one dashboard.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <Link to="/signup">
+                  Start your hotspot business <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/pricing">See pricing</Link>
+              </Button>
+            </div>
+            <p className="mt-4 text-xs text-muted-foreground">14-day free trial · No card needed</p>
           </div>
-        </section>
-      </div>
-
-      <div className="mt-6 grid gap-6 xl:grid-cols-2">
-        <section className="panel p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Top businesses</h2>
-            <Link to="/businesses" className="text-xs font-medium text-primary hover:underline">
-              View all
-            </Link>
-          </div>
-          <ul className="mt-4 divide-y divide-border">
-            {tenants.slice(0, 4).map((t) => (
-              <li key={t.id} className="flex items-center justify-between gap-4 py-3">
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {t.owner} · {t.locations} locations · {t.subscribers.toLocaleString()} users
-                  </p>
+          <div className="panel p-6">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground">Today at your hotspot</p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {[
+                ["Revenue", "KES 12,450"],
+                ["Online now", "87"],
+                ["Routers", "4 / 4"],
+                ["Vouchers sold", "132"],
+              ].map(([k, v]) => (
+                <div key={k} className="rounded-xl border border-border bg-muted/40 p-4">
+                  <p className="text-xs text-muted-foreground">{k}</p>
+                  <p className="stat-value mt-1 text-2xl font-semibold">{v}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-foreground">
-                    {formatMoney(t.monthlyRevenue, t.currency)}
-                  </p>
-                  <StatusPill status={t.status} className="mt-1" />
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="panel p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Needs attention</h2>
-            <Link to="/routers" className="text-xs font-medium text-primary hover:underline">
-              All routers
-            </Link>
-          </div>
-          <ul className="mt-4 space-y-3">
-            {routers
-              .filter((r) => r.status !== "online")
-              .map((r) => (
-                <li
-                  key={r.id}
-                  className="flex items-center justify-between rounded-lg border border-border bg-muted/40 px-3 py-3"
-                >
-                  <div>
-                    <p className="text-sm font-medium text-foreground">{r.name}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {r.tenant} · {r.location} · seen {r.lastSeen}
-                    </p>
-                  </div>
-                  <StatusPill status={r.status} />
-                </li>
               ))}
-          </ul>
-
-          <div className="mt-5 flex items-center gap-2 text-xs text-muted-foreground">
-            <Users className="size-4" />
-            {platformStats.totalSubscribers.toLocaleString()} subscribers across the platform
+            </div>
+            <p className="mt-4 text-[11px] text-muted-foreground">Illustration</p>
           </div>
-        </section>
-      </div>
-
-      <section className="panel mt-6 p-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Latest payments</h2>
-          <Link to="/payments" className="text-xs font-medium text-primary hover:underline">
-            View all
-          </Link>
-        </div>
-        <div className="mt-4 overflow-x-auto">
-          <table className="w-full min-w-[620px] text-sm">
-            <thead>
-              <tr className="text-left text-xs uppercase tracking-wider text-muted-foreground">
-                <th className="pb-3 font-medium">Reference</th>
-                <th className="pb-3 font-medium">Business</th>
-                <th className="pb-3 font-medium">Method</th>
-                <th className="pb-3 font-medium">Amount</th>
-                <th className="pb-3 font-medium">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border">
-              {payments.slice(0, 5).map((p) => (
-                <tr key={p.id}>
-                  <td className="py-3 font-mono text-xs text-muted-foreground">{p.reference}</td>
-                  <td className="py-3">{p.tenant}</td>
-                  <td className="py-3 text-muted-foreground">{p.method}</td>
-                  <td className="py-3">{formatMoney(p.amount, p.currency)}</td>
-                  <td className="py-3">
-                    <StatusPill status={p.status} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </section>
-    </AdminShell>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <h2 className="font-display text-3xl font-semibold">Live in three steps</h2>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {steps.map((s) => (
+            <div key={s.n} className="panel p-6">
+              <p className="font-mono text-sm text-primary">{s.n}</p>
+              <p className="mt-3 font-display text-lg font-semibold">{s.title}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-muted/20">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <h2 className="font-display text-3xl font-semibold">Built for hotspot operators</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((f) => (
+              <div key={f.title}>
+                <f.icon className="size-6 text-primary" />
+                <p className="mt-3 font-medium">{f.title}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20 text-center">
+        <h2 className="font-display text-3xl font-semibold">Ready to sell Wi-Fi?</h2>
+        <p className="mt-3 text-muted-foreground">Set up your business, router and prices today.</p>
+        <Button asChild size="lg" className="mt-6">
+          <Link to="/signup">Create free account</Link>
+        </Button>
+      </section>
+    </SiteShell>
   );
 }

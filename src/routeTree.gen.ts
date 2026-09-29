@@ -10,140 +10,408 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as BusinessesRouteImport } from './routes/businesses'
-import { Route as GatewaysRouteImport } from './routes/gateways'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as PaymentsRouteImport } from './routes/payments'
-import { Route as RouterSetupRouteImport } from './routes/router-setup'
-import { Route as RoutersRouteImport } from './routes/routers'
-import { Route as SubscribersRouteImport } from './routes/subscribers'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FeaturesRouteImport } from './routes/features'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/admin/route'
+import { Route as AuthenticatedAppRouteRouteImport } from './routes/_authenticated/app/route'
 import { Route as PortalSlugRouteImport } from './routes/portal.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminBusinessesRouteImport } from './routes/_authenticated/admin/businesses'
+import { Route as AuthenticatedAdminGatewaysRouteImport } from './routes/_authenticated/admin/gateways'
+import { Route as AuthenticatedAdminOnboardingRouteImport } from './routes/_authenticated/admin/onboarding'
+import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authenticated/admin/payments'
+import { Route as AuthenticatedAdminRouterSetupRouteImport } from './routes/_authenticated/admin/router-setup'
+import { Route as AuthenticatedAdminRoutersRouteImport } from './routes/_authenticated/admin/routers'
+import { Route as AuthenticatedAdminSubscribersRouteImport } from './routes/_authenticated/admin/subscribers'
+import { Route as AuthenticatedAppIndexRouteImport } from './routes/_authenticated/app/index'
+import { Route as AuthenticatedAppGatewaysRouteImport } from './routes/_authenticated/app/gateways'
+import { Route as AuthenticatedAppLocationsRouteImport } from './routes/_authenticated/app/locations'
+import { Route as AuthenticatedAppPaymentsRouteImport } from './routes/_authenticated/app/payments'
+import { Route as AuthenticatedAppPlansRouteImport } from './routes/_authenticated/app/plans'
+import { Route as AuthenticatedAppPortalRouteImport } from './routes/_authenticated/app/portal'
+import { Route as AuthenticatedAppRoutersRouteImport } from './routes/_authenticated/app/routers'
+import { Route as AuthenticatedAppSessionsRouteImport } from './routes/_authenticated/app/sessions'
+import { Route as AuthenticatedAppSettingsRouteImport } from './routes/_authenticated/app/settings'
+import { Route as AuthenticatedAppSetupRouteImport } from './routes/_authenticated/app/setup'
+import { Route as AuthenticatedAppStaffRouteImport } from './routes/_authenticated/app/staff'
+import { Route as AuthenticatedAppSubscribersRouteImport } from './routes/_authenticated/app/subscribers'
+import { Route as AuthenticatedAppVouchersRouteImport } from './routes/_authenticated/app/vouchers'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BusinessesRoute = BusinessesRouteImport.update({
-  id: '/businesses',
-  path: '/businesses',
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GatewaysRoute = GatewaysRouteImport.update({
-  id: '/gateways',
-  path: '/gateways',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
+const FeaturesRoute = FeaturesRouteImport.update({
+  id: '/features',
+  path: '/features',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PaymentsRoute = PaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RouterSetupRoute = RouterSetupRouteImport.update({
-  id: '/router-setup',
-  path: '/router-setup',
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RoutersRoute = RoutersRouteImport.update({
-  id: '/routers',
-  path: '/routers',
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SubscribersRoute = SubscribersRouteImport.update({
-  id: '/subscribers',
-  path: '/subscribers',
-  getParentRoute: () => rootRouteImport,
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppRouteRoute = AuthenticatedAppRouteRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const PortalSlugRoute = PortalSlugRouteImport.update({
   id: '/portal/$slug',
   path: '/portal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminBusinessesRoute =
+  AuthenticatedAdminBusinessesRouteImport.update({
+    id: '/businesses',
+    path: '/businesses',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminGatewaysRoute =
+  AuthenticatedAdminGatewaysRouteImport.update({
+    id: '/gateways',
+    path: '/gateways',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminOnboardingRoute =
+  AuthenticatedAdminOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminPaymentsRoute =
+  AuthenticatedAdminPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminRouterSetupRoute =
+  AuthenticatedAdminRouterSetupRouteImport.update({
+    id: '/router-setup',
+    path: '/router-setup',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminRoutersRoute =
+  AuthenticatedAdminRoutersRouteImport.update({
+    id: '/routers',
+    path: '/routers',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminSubscribersRoute =
+  AuthenticatedAdminSubscribersRouteImport.update({
+    id: '/subscribers',
+    path: '/subscribers',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAppIndexRoute = AuthenticatedAppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppGatewaysRoute =
+  AuthenticatedAppGatewaysRouteImport.update({
+    id: '/gateways',
+    path: '/gateways',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppLocationsRoute =
+  AuthenticatedAppLocationsRouteImport.update({
+    id: '/locations',
+    path: '/locations',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppPaymentsRoute =
+  AuthenticatedAppPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppPlansRoute = AuthenticatedAppPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppPortalRoute = AuthenticatedAppPortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppRoutersRoute = AuthenticatedAppRoutersRouteImport.update({
+  id: '/routers',
+  path: '/routers',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppSessionsRoute =
+  AuthenticatedAppSessionsRouteImport.update({
+    id: '/sessions',
+    path: '/sessions',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppSettingsRoute =
+  AuthenticatedAppSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppSetupRoute = AuthenticatedAppSetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppStaffRoute = AuthenticatedAppStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppSubscribersRoute =
+  AuthenticatedAppSubscribersRouteImport.update({
+    id: '/subscribers',
+    path: '/subscribers',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppVouchersRoute =
+  AuthenticatedAppVouchersRouteImport.update({
+    id: '/vouchers',
+    path: '/vouchers',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
+  '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
+  '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/gateways': typeof AuthenticatedAppGatewaysRoute
+  '/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/portal': typeof AuthenticatedAppPortalRoute
+  '/app/routers': typeof AuthenticatedAppRoutersRoute
+  '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/setup': typeof AuthenticatedAppSetupRoute
+  '/app/staff': typeof AuthenticatedAppStaffRoute
+  '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
+  '/app/vouchers': typeof AuthenticatedAppVouchersRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/app/': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
   '/portal/$slug': typeof PortalSlugRoute
+  '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/gateways': typeof AuthenticatedAppGatewaysRoute
+  '/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/portal': typeof AuthenticatedAppPortalRoute
+  '/app/routers': typeof AuthenticatedAppRoutersRoute
+  '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/app/setup': typeof AuthenticatedAppSetupRoute
+  '/app/staff': typeof AuthenticatedAppStaffRoute
+  '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
+  '/app/vouchers': typeof AuthenticatedAppVouchersRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
+  '/app': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/contact': typeof ContactRoute
+  '/features': typeof FeaturesRoute
+  '/login': typeof LoginRoute
+  '/pricing': typeof PricingRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
+  '/_authenticated/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/_authenticated/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/_authenticated/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/_authenticated/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/_authenticated/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/_authenticated/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/_authenticated/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/_authenticated/app/gateways': typeof AuthenticatedAppGatewaysRoute
+  '/_authenticated/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/_authenticated/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/_authenticated/app/plans': typeof AuthenticatedAppPlansRoute
+  '/_authenticated/app/portal': typeof AuthenticatedAppPortalRoute
+  '/_authenticated/app/routers': typeof AuthenticatedAppRoutersRoute
+  '/_authenticated/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/_authenticated/app/settings': typeof AuthenticatedAppSettingsRoute
+  '/_authenticated/app/setup': typeof AuthenticatedAppSetupRoute
+  '/_authenticated/app/staff': typeof AuthenticatedAppStaffRoute
+  '/_authenticated/app/subscribers': typeof AuthenticatedAppSubscribersRoute
+  '/_authenticated/app/vouchers': typeof AuthenticatedAppVouchersRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/app/': typeof AuthenticatedAppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
+    | '/contact'
+    | '/features'
+    | '/login'
+    | '/pricing'
+    | '/signup'
+    | '/admin'
+    | '/app'
     | '/portal/$slug'
+    | '/admin/businesses'
+    | '/admin/gateways'
+    | '/admin/onboarding'
+    | '/admin/payments'
+    | '/admin/router-setup'
+    | '/admin/routers'
+    | '/admin/subscribers'
+    | '/app/gateways'
+    | '/app/locations'
+    | '/app/payments'
+    | '/app/plans'
+    | '/app/portal'
+    | '/app/routers'
+    | '/app/sessions'
+    | '/app/settings'
+    | '/app/setup'
+    | '/app/staff'
+    | '/app/subscribers'
+    | '/app/vouchers'
+    | '/admin/'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
+    | '/contact'
+    | '/features'
+    | '/login'
+    | '/pricing'
+    | '/signup'
     | '/portal/$slug'
+    | '/admin/businesses'
+    | '/admin/gateways'
+    | '/admin/onboarding'
+    | '/admin/payments'
+    | '/admin/router-setup'
+    | '/admin/routers'
+    | '/admin/subscribers'
+    | '/app/gateways'
+    | '/app/locations'
+    | '/app/payments'
+    | '/app/plans'
+    | '/app/portal'
+    | '/app/routers'
+    | '/app/sessions'
+    | '/app/settings'
+    | '/app/setup'
+    | '/app/staff'
+    | '/app/subscribers'
+    | '/app/vouchers'
+    | '/admin'
+    | '/app'
   id:
     | '__root__'
     | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
+    | '/_authenticated'
+    | '/contact'
+    | '/features'
+    | '/login'
+    | '/pricing'
+    | '/signup'
+    | '/_authenticated/admin'
+    | '/_authenticated/app'
     | '/portal/$slug'
+    | '/_authenticated/admin/businesses'
+    | '/_authenticated/admin/gateways'
+    | '/_authenticated/admin/onboarding'
+    | '/_authenticated/admin/payments'
+    | '/_authenticated/admin/router-setup'
+    | '/_authenticated/admin/routers'
+    | '/_authenticated/admin/subscribers'
+    | '/_authenticated/app/gateways'
+    | '/_authenticated/app/locations'
+    | '/_authenticated/app/payments'
+    | '/_authenticated/app/plans'
+    | '/_authenticated/app/portal'
+    | '/_authenticated/app/routers'
+    | '/_authenticated/app/sessions'
+    | '/_authenticated/app/settings'
+    | '/_authenticated/app/setup'
+    | '/_authenticated/app/staff'
+    | '/_authenticated/app/subscribers'
+    | '/_authenticated/app/vouchers'
+    | '/_authenticated/admin/'
+    | '/_authenticated/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BusinessesRoute: typeof BusinessesRoute
-  GatewaysRoute: typeof GatewaysRoute
-  OnboardingRoute: typeof OnboardingRoute
-  PaymentsRoute: typeof PaymentsRoute
-  RouterSetupRoute: typeof RouterSetupRoute
-  RoutersRoute: typeof RoutersRoute
-  SubscribersRoute: typeof SubscribersRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  ContactRoute: typeof ContactRoute
+  FeaturesRoute: typeof FeaturesRoute
+  LoginRoute: typeof LoginRoute
+  PricingRoute: typeof PricingRoute
+  SignupRoute: typeof SignupRoute
   PortalSlugRoute: typeof PortalSlugRoute
 }
 
@@ -156,54 +424,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/businesses': {
-      id: '/businesses'
-      path: '/businesses'
-      fullPath: '/businesses'
-      preLoaderRoute: typeof BusinessesRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/gateways': {
-      id: '/gateways'
-      path: '/gateways'
-      fullPath: '/gateways'
-      preLoaderRoute: typeof GatewaysRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
+    '/features': {
+      id: '/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof FeaturesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/payments': {
-      id: '/payments'
-      path: '/payments'
-      fullPath: '/payments'
-      preLoaderRoute: typeof PaymentsRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/router-setup': {
-      id: '/router-setup'
-      path: '/router-setup'
-      fullPath: '/router-setup'
-      preLoaderRoute: typeof RouterSetupRouteImport
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/routers': {
-      id: '/routers'
-      path: '/routers'
-      fullPath: '/routers'
-      preLoaderRoute: typeof RoutersRouteImport
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/subscribers': {
-      id: '/subscribers'
-      path: '/subscribers'
-      fullPath: '/subscribers'
-      preLoaderRoute: typeof SubscribersRouteImport
-      parentRoute: typeof rootRouteImport
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/portal/$slug': {
       id: '/portal/$slug'
@@ -212,18 +487,242 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/businesses': {
+      id: '/_authenticated/admin/businesses'
+      path: '/businesses'
+      fullPath: '/admin/businesses'
+      preLoaderRoute: typeof AuthenticatedAdminBusinessesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/gateways': {
+      id: '/_authenticated/admin/gateways'
+      path: '/gateways'
+      fullPath: '/admin/gateways'
+      preLoaderRoute: typeof AuthenticatedAdminGatewaysRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/onboarding': {
+      id: '/_authenticated/admin/onboarding'
+      path: '/onboarding'
+      fullPath: '/admin/onboarding'
+      preLoaderRoute: typeof AuthenticatedAdminOnboardingRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/payments': {
+      id: '/_authenticated/admin/payments'
+      path: '/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AuthenticatedAdminPaymentsRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/router-setup': {
+      id: '/_authenticated/admin/router-setup'
+      path: '/router-setup'
+      fullPath: '/admin/router-setup'
+      preLoaderRoute: typeof AuthenticatedAdminRouterSetupRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/routers': {
+      id: '/_authenticated/admin/routers'
+      path: '/routers'
+      fullPath: '/admin/routers'
+      preLoaderRoute: typeof AuthenticatedAdminRoutersRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/subscribers': {
+      id: '/_authenticated/admin/subscribers'
+      path: '/subscribers'
+      fullPath: '/admin/subscribers'
+      preLoaderRoute: typeof AuthenticatedAdminSubscribersRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/app/': {
+      id: '/_authenticated/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AuthenticatedAppIndexRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/gateways': {
+      id: '/_authenticated/app/gateways'
+      path: '/gateways'
+      fullPath: '/app/gateways'
+      preLoaderRoute: typeof AuthenticatedAppGatewaysRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/locations': {
+      id: '/_authenticated/app/locations'
+      path: '/locations'
+      fullPath: '/app/locations'
+      preLoaderRoute: typeof AuthenticatedAppLocationsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/payments': {
+      id: '/_authenticated/app/payments'
+      path: '/payments'
+      fullPath: '/app/payments'
+      preLoaderRoute: typeof AuthenticatedAppPaymentsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/plans': {
+      id: '/_authenticated/app/plans'
+      path: '/plans'
+      fullPath: '/app/plans'
+      preLoaderRoute: typeof AuthenticatedAppPlansRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/portal': {
+      id: '/_authenticated/app/portal'
+      path: '/portal'
+      fullPath: '/app/portal'
+      preLoaderRoute: typeof AuthenticatedAppPortalRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/routers': {
+      id: '/_authenticated/app/routers'
+      path: '/routers'
+      fullPath: '/app/routers'
+      preLoaderRoute: typeof AuthenticatedAppRoutersRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/sessions': {
+      id: '/_authenticated/app/sessions'
+      path: '/sessions'
+      fullPath: '/app/sessions'
+      preLoaderRoute: typeof AuthenticatedAppSessionsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/settings': {
+      id: '/_authenticated/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppSettingsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/setup': {
+      id: '/_authenticated/app/setup'
+      path: '/setup'
+      fullPath: '/app/setup'
+      preLoaderRoute: typeof AuthenticatedAppSetupRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/staff': {
+      id: '/_authenticated/app/staff'
+      path: '/staff'
+      fullPath: '/app/staff'
+      preLoaderRoute: typeof AuthenticatedAppStaffRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/subscribers': {
+      id: '/_authenticated/app/subscribers'
+      path: '/subscribers'
+      fullPath: '/app/subscribers'
+      preLoaderRoute: typeof AuthenticatedAppSubscribersRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/vouchers': {
+      id: '/_authenticated/app/vouchers'
+      path: '/vouchers'
+      fullPath: '/app/vouchers'
+      preLoaderRoute: typeof AuthenticatedAppVouchersRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminBusinessesRoute: typeof AuthenticatedAdminBusinessesRoute
+  AuthenticatedAdminGatewaysRoute: typeof AuthenticatedAdminGatewaysRoute
+  AuthenticatedAdminOnboardingRoute: typeof AuthenticatedAdminOnboardingRoute
+  AuthenticatedAdminPaymentsRoute: typeof AuthenticatedAdminPaymentsRoute
+  AuthenticatedAdminRouterSetupRoute: typeof AuthenticatedAdminRouterSetupRoute
+  AuthenticatedAdminRoutersRoute: typeof AuthenticatedAdminRoutersRoute
+  AuthenticatedAdminSubscribersRoute: typeof AuthenticatedAdminSubscribersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminBusinessesRoute: AuthenticatedAdminBusinessesRoute,
+    AuthenticatedAdminGatewaysRoute: AuthenticatedAdminGatewaysRoute,
+    AuthenticatedAdminOnboardingRoute: AuthenticatedAdminOnboardingRoute,
+    AuthenticatedAdminPaymentsRoute: AuthenticatedAdminPaymentsRoute,
+    AuthenticatedAdminRouterSetupRoute: AuthenticatedAdminRouterSetupRoute,
+    AuthenticatedAdminRoutersRoute: AuthenticatedAdminRoutersRoute,
+    AuthenticatedAdminSubscribersRoute: AuthenticatedAdminSubscribersRoute,
+    AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
+interface AuthenticatedAppRouteRouteChildren {
+  AuthenticatedAppGatewaysRoute: typeof AuthenticatedAppGatewaysRoute
+  AuthenticatedAppLocationsRoute: typeof AuthenticatedAppLocationsRoute
+  AuthenticatedAppPaymentsRoute: typeof AuthenticatedAppPaymentsRoute
+  AuthenticatedAppPlansRoute: typeof AuthenticatedAppPlansRoute
+  AuthenticatedAppPortalRoute: typeof AuthenticatedAppPortalRoute
+  AuthenticatedAppRoutersRoute: typeof AuthenticatedAppRoutersRoute
+  AuthenticatedAppSessionsRoute: typeof AuthenticatedAppSessionsRoute
+  AuthenticatedAppSettingsRoute: typeof AuthenticatedAppSettingsRoute
+  AuthenticatedAppSetupRoute: typeof AuthenticatedAppSetupRoute
+  AuthenticatedAppStaffRoute: typeof AuthenticatedAppStaffRoute
+  AuthenticatedAppSubscribersRoute: typeof AuthenticatedAppSubscribersRoute
+  AuthenticatedAppVouchersRoute: typeof AuthenticatedAppVouchersRoute
+  AuthenticatedAppIndexRoute: typeof AuthenticatedAppIndexRoute
+}
+
+const AuthenticatedAppRouteRouteChildren: AuthenticatedAppRouteRouteChildren = {
+  AuthenticatedAppGatewaysRoute: AuthenticatedAppGatewaysRoute,
+  AuthenticatedAppLocationsRoute: AuthenticatedAppLocationsRoute,
+  AuthenticatedAppPaymentsRoute: AuthenticatedAppPaymentsRoute,
+  AuthenticatedAppPlansRoute: AuthenticatedAppPlansRoute,
+  AuthenticatedAppPortalRoute: AuthenticatedAppPortalRoute,
+  AuthenticatedAppRoutersRoute: AuthenticatedAppRoutersRoute,
+  AuthenticatedAppSessionsRoute: AuthenticatedAppSessionsRoute,
+  AuthenticatedAppSettingsRoute: AuthenticatedAppSettingsRoute,
+  AuthenticatedAppSetupRoute: AuthenticatedAppSetupRoute,
+  AuthenticatedAppStaffRoute: AuthenticatedAppStaffRoute,
+  AuthenticatedAppSubscribersRoute: AuthenticatedAppSubscribersRoute,
+  AuthenticatedAppVouchersRoute: AuthenticatedAppVouchersRoute,
+  AuthenticatedAppIndexRoute: AuthenticatedAppIndexRoute,
+}
+
+const AuthenticatedAppRouteRouteWithChildren =
+  AuthenticatedAppRouteRoute._addFileChildren(
+    AuthenticatedAppRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedAppRouteRoute: typeof AuthenticatedAppRouteRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedAppRouteRoute: AuthenticatedAppRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BusinessesRoute: BusinessesRoute,
-  GatewaysRoute: GatewaysRoute,
-  OnboardingRoute: OnboardingRoute,
-  PaymentsRoute: PaymentsRoute,
-  RouterSetupRoute: RouterSetupRoute,
-  RoutersRoute: RoutersRoute,
-  SubscribersRoute: SubscribersRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  ContactRoute: ContactRoute,
+  FeaturesRoute: FeaturesRoute,
+  LoginRoute: LoginRoute,
+  PricingRoute: PricingRoute,
+  SignupRoute: SignupRoute,
   PortalSlugRoute: PortalSlugRoute,
 }
 export const routeTree = rootRouteImport

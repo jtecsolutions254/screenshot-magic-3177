@@ -3,7 +3,7 @@ import { AdminShell } from "@/components/admin-shell";
 import { StatusPill } from "@/components/status-pill";
 import { subscribers } from "@/lib/platform-data";
 
-export const Route = createFileRoute("/subscribers")({
+export const Route = createFileRoute("/_authenticated/admin/subscribers")({
   head: () => ({
     meta: [
       { title: "Subscribers | Kwetu Connection" },

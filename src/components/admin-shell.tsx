@@ -1,4 +1,6 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { signOut } from "@/components/owner-shell";
 import {
   LayoutDashboard,
   Building2,
@@ -10,20 +12,21 @@ import {
   PlugZap,
   Wallet,
   Wifi,
+  LogOut,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const nav: { to: string; label: string; icon: LucideIcon }[] = [
-  { to: "/", label: "Overview", icon: LayoutDashboard },
-  { to: "/businesses", label: "Businesses", icon: Building2 },
-  { to: "/onboarding", label: "New business", icon: UserPlus },
-  { to: "/routers", label: "Routers", icon: RouterIcon },
-  { to: "/router-setup", label: "Connect router", icon: PlugZap },
-  { to: "/subscribers", label: "Subscribers", icon: Users },
-  { to: "/payments", label: "Payments", icon: CreditCard },
-  { to: "/gateways", label: "Payment setup", icon: Wallet },
+  { to: "/admin", label: "Overview", icon: LayoutDashboard },
+  { to: "/admin/businesses", label: "Businesses", icon: Building2 },
+  { to: "/admin/onboarding", label: "New business", icon: UserPlus },
+  { to: "/admin/routers", label: "Routers", icon: RouterIcon },
+  { to: "/admin/router-setup", label: "Connect router", icon: PlugZap },
+  { to: "/admin/subscribers", label: "Subscribers", icon: Users },
+  { to: "/admin/payments", label: "Payments", icon: CreditCard },
+  { to: "/admin/gateways", label: "Payment setup", icon: Wallet },
 ];
 
 export function AdminShell({
@@ -36,6 +39,8 @@ export function AdminShell({
   children: ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const qc = useQueryClient();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,6 +82,12 @@ export function AdminShell({
           </nav>
 
           <div className="mt-auto space-y-3">
+            <button
+              onClick={() => signOut(qc, navigate)}
+              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <LogOut className="size-4" /> Sign out
+            </button>
             <Link
               to="/portal/$slug"
               params={{ slug: "kwetunet" }}

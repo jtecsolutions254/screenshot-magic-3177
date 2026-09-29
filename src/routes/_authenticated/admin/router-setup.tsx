@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { buildRouterScript, tenantConfigs, tenantOf, firstTenantSlug } from "@/lib/tenant-config";
 import { StatusPill } from "@/components/status-pill";
 
-export const Route = createFileRoute("/router-setup")({
+export const Route = createFileRoute("/_authenticated/admin/router-setup")({
   head: () => ({
     meta: [
       { title: "Connect a router — Kwetu Connection" },
