@@ -125,10 +125,10 @@ function OnboardingPage() {
               </Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link to="/router-setup">Set up the router</Link>
+              <Link to="/admin/router-setup">Set up the router</Link>
             </Button>
             <Button variant="ghost" asChild>
-              <Link to="/businesses">Back to businesses</Link>
+              <Link to="/admin/businesses">Back to businesses</Link>
             </Button>
           </div>
         </div>

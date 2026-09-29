@@ -9,202 +9,153 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as BusinessesRouteImport } from './routes/businesses'
-import { Route as GatewaysRouteImport } from './routes/gateways'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as PaymentsRouteImport } from './routes/payments'
-import { Route as RouterSetupRouteImport } from './routes/router-setup'
-import { Route as RoutersRouteImport } from './routes/routers'
-import { Route as SubscribersRouteImport } from './routes/subscribers'
 import { Route as PortalSlugRouteImport } from './routes/portal.$slug'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminBusinessesRouteImport } from './routes/_authenticated/admin/businesses'
+import { Route as AuthenticatedAdminGatewaysRouteImport } from './routes/_authenticated/admin/gateways'
+import { Route as AuthenticatedAdminOnboardingRouteImport } from './routes/_authenticated/admin/onboarding'
+import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authenticated/admin/payments'
+import { Route as AuthenticatedAdminRouterSetupRouteImport } from './routes/_authenticated/admin/router-setup'
+import { Route as AuthenticatedAdminRoutersRouteImport } from './routes/_authenticated/admin/routers'
+import { Route as AuthenticatedAdminSubscribersRouteImport } from './routes/_authenticated/admin/subscribers'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BusinessesRoute = BusinessesRouteImport.update({
-  id: '/businesses',
-  path: '/businesses',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GatewaysRoute = GatewaysRouteImport.update({
-  id: '/gateways',
-  path: '/gateways',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaymentsRoute = PaymentsRouteImport.update({
-  id: '/payments',
-  path: '/payments',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RouterSetupRoute = RouterSetupRouteImport.update({
-  id: '/router-setup',
-  path: '/router-setup',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RoutersRoute = RoutersRouteImport.update({
-  id: '/routers',
-  path: '/routers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SubscribersRoute = SubscribersRouteImport.update({
-  id: '/subscribers',
-  path: '/subscribers',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PortalSlugRoute = PortalSlugRouteImport.update({
   id: '/portal/$slug',
   path: '/portal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/_authenticated/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminBusinessesRoute =
+  AuthenticatedAdminBusinessesRouteImport.update({
+    id: '/_authenticated/admin/businesses',
+    path: '/admin/businesses',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminGatewaysRoute =
+  AuthenticatedAdminGatewaysRouteImport.update({
+    id: '/_authenticated/admin/gateways',
+    path: '/admin/gateways',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminOnboardingRoute =
+  AuthenticatedAdminOnboardingRouteImport.update({
+    id: '/_authenticated/admin/onboarding',
+    path: '/admin/onboarding',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminPaymentsRoute =
+  AuthenticatedAdminPaymentsRouteImport.update({
+    id: '/_authenticated/admin/payments',
+    path: '/admin/payments',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminRouterSetupRoute =
+  AuthenticatedAdminRouterSetupRouteImport.update({
+    id: '/_authenticated/admin/router-setup',
+    path: '/admin/router-setup',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminRoutersRoute =
+  AuthenticatedAdminRoutersRouteImport.update({
+    id: '/_authenticated/admin/routers',
+    path: '/admin/routers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedAdminSubscribersRoute =
+  AuthenticatedAdminSubscribersRouteImport.update({
+    id: '/_authenticated/admin/subscribers',
+    path: '/admin/subscribers',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
   '/portal/$slug': typeof PortalSlugRoute
+  '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
   '/portal/$slug': typeof PortalSlugRoute
+  '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/businesses': typeof BusinessesRoute
-  '/gateways': typeof GatewaysRoute
-  '/onboarding': typeof OnboardingRoute
-  '/payments': typeof PaymentsRoute
-  '/router-setup': typeof RouterSetupRoute
-  '/routers': typeof RoutersRoute
-  '/subscribers': typeof SubscribersRoute
   '/portal/$slug': typeof PortalSlugRoute
+  '/_authenticated/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
+  '/_authenticated/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
+  '/_authenticated/admin/onboarding': typeof AuthenticatedAdminOnboardingRoute
+  '/_authenticated/admin/payments': typeof AuthenticatedAdminPaymentsRoute
+  '/_authenticated/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
+  '/_authenticated/admin/routers': typeof AuthenticatedAdminRoutersRoute
+  '/_authenticated/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
     | '/portal/$slug'
+    | '/admin/businesses'
+    | '/admin/gateways'
+    | '/admin/onboarding'
+    | '/admin/payments'
+    | '/admin/router-setup'
+    | '/admin/routers'
+    | '/admin/subscribers'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
     | '/portal/$slug'
+    | '/admin/businesses'
+    | '/admin/gateways'
+    | '/admin/onboarding'
+    | '/admin/payments'
+    | '/admin/router-setup'
+    | '/admin/routers'
+    | '/admin/subscribers'
+    | '/admin'
   id:
     | '__root__'
-    | '/'
-    | '/businesses'
-    | '/gateways'
-    | '/onboarding'
-    | '/payments'
-    | '/router-setup'
-    | '/routers'
-    | '/subscribers'
     | '/portal/$slug'
+    | '/_authenticated/admin/businesses'
+    | '/_authenticated/admin/gateways'
+    | '/_authenticated/admin/onboarding'
+    | '/_authenticated/admin/payments'
+    | '/_authenticated/admin/router-setup'
+    | '/_authenticated/admin/routers'
+    | '/_authenticated/admin/subscribers'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  BusinessesRoute: typeof BusinessesRoute
-  GatewaysRoute: typeof GatewaysRoute
-  OnboardingRoute: typeof OnboardingRoute
-  PaymentsRoute: typeof PaymentsRoute
-  RouterSetupRoute: typeof RouterSetupRoute
-  RoutersRoute: typeof RoutersRoute
-  SubscribersRoute: typeof SubscribersRoute
   PortalSlugRoute: typeof PortalSlugRoute
+  AuthenticatedAdminBusinessesRoute: typeof AuthenticatedAdminBusinessesRoute
+  AuthenticatedAdminGatewaysRoute: typeof AuthenticatedAdminGatewaysRoute
+  AuthenticatedAdminOnboardingRoute: typeof AuthenticatedAdminOnboardingRoute
+  AuthenticatedAdminPaymentsRoute: typeof AuthenticatedAdminPaymentsRoute
+  AuthenticatedAdminRouterSetupRoute: typeof AuthenticatedAdminRouterSetupRoute
+  AuthenticatedAdminRoutersRoute: typeof AuthenticatedAdminRoutersRoute
+  AuthenticatedAdminSubscribersRoute: typeof AuthenticatedAdminSubscribersRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/businesses': {
-      id: '/businesses'
-      path: '/businesses'
-      fullPath: '/businesses'
-      preLoaderRoute: typeof BusinessesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gateways': {
-      id: '/gateways'
-      path: '/gateways'
-      fullPath: '/gateways'
-      preLoaderRoute: typeof GatewaysRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payments': {
-      id: '/payments'
-      path: '/payments'
-      fullPath: '/payments'
-      preLoaderRoute: typeof PaymentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/router-setup': {
-      id: '/router-setup'
-      path: '/router-setup'
-      fullPath: '/router-setup'
-      preLoaderRoute: typeof RouterSetupRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/routers': {
-      id: '/routers'
-      path: '/routers'
-      fullPath: '/routers'
-      preLoaderRoute: typeof RoutersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/subscribers': {
-      id: '/subscribers'
-      path: '/subscribers'
-      fullPath: '/subscribers'
-      preLoaderRoute: typeof SubscribersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/portal/$slug': {
       id: '/portal/$slug'
       path: '/portal/$slug'
@@ -212,19 +163,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/businesses': {
+      id: '/_authenticated/admin/businesses'
+      path: '/admin/businesses'
+      fullPath: '/admin/businesses'
+      preLoaderRoute: typeof AuthenticatedAdminBusinessesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/gateways': {
+      id: '/_authenticated/admin/gateways'
+      path: '/admin/gateways'
+      fullPath: '/admin/gateways'
+      preLoaderRoute: typeof AuthenticatedAdminGatewaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/onboarding': {
+      id: '/_authenticated/admin/onboarding'
+      path: '/admin/onboarding'
+      fullPath: '/admin/onboarding'
+      preLoaderRoute: typeof AuthenticatedAdminOnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/payments': {
+      id: '/_authenticated/admin/payments'
+      path: '/admin/payments'
+      fullPath: '/admin/payments'
+      preLoaderRoute: typeof AuthenticatedAdminPaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/router-setup': {
+      id: '/_authenticated/admin/router-setup'
+      path: '/admin/router-setup'
+      fullPath: '/admin/router-setup'
+      preLoaderRoute: typeof AuthenticatedAdminRouterSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/routers': {
+      id: '/_authenticated/admin/routers'
+      path: '/admin/routers'
+      fullPath: '/admin/routers'
+      preLoaderRoute: typeof AuthenticatedAdminRoutersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/subscribers': {
+      id: '/_authenticated/admin/subscribers'
+      path: '/admin/subscribers'
+      fullPath: '/admin/subscribers'
+      preLoaderRoute: typeof AuthenticatedAdminSubscribersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  BusinessesRoute: BusinessesRoute,
-  GatewaysRoute: GatewaysRoute,
-  OnboardingRoute: OnboardingRoute,
-  PaymentsRoute: PaymentsRoute,
-  RouterSetupRoute: RouterSetupRoute,
-  RoutersRoute: RoutersRoute,
-  SubscribersRoute: SubscribersRoute,
   PortalSlugRoute: PortalSlugRoute,
+  AuthenticatedAdminBusinessesRoute: AuthenticatedAdminBusinessesRoute,
+  AuthenticatedAdminGatewaysRoute: AuthenticatedAdminGatewaysRoute,
+  AuthenticatedAdminOnboardingRoute: AuthenticatedAdminOnboardingRoute,
+  AuthenticatedAdminPaymentsRoute: AuthenticatedAdminPaymentsRoute,
+  AuthenticatedAdminRouterSetupRoute: AuthenticatedAdminRouterSetupRoute,
+  AuthenticatedAdminRoutersRoute: AuthenticatedAdminRoutersRoute,
+  AuthenticatedAdminSubscribersRoute: AuthenticatedAdminSubscribersRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

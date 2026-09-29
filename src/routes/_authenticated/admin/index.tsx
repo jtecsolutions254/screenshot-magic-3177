@@ -208,7 +208,7 @@ function Overview() {
         <section className="panel p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Top businesses</h2>
-            <Link to="/businesses" className="text-xs font-medium text-primary hover:underline">
+            <Link to="/admin/businesses" className="text-xs font-medium text-primary hover:underline">
               View all
             </Link>
           </div>
@@ -235,7 +235,7 @@ function Overview() {
         <section className="panel p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold">Needs attention</h2>
-            <Link to="/routers" className="text-xs font-medium text-primary hover:underline">
+            <Link to="/admin/routers" className="text-xs font-medium text-primary hover:underline">
               All routers
             </Link>
           </div>
@@ -268,7 +268,7 @@ function Overview() {
       <section className="panel mt-6 p-6">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-semibold">Latest payments</h2>
-          <Link to="/payments" className="text-xs font-medium text-primary hover:underline">
+          <Link to="/admin/payments" className="text-xs font-medium text-primary hover:underline">
             View all
           </Link>
         </div>
