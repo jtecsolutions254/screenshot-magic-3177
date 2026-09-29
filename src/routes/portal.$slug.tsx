@@ -36,7 +36,7 @@ type Stage = "idle" | "prompting" | "connected";
 function PortalPage() {
   const { branding, packages } = Route.useLoaderData();
   const [mode, setMode] = useState<Mode>("buy");
-  const [selected, setSelected] = useState<HotspotPackage>(packages[1] ?? packages[0]);
+  const [selected, setSelected] = useState<HotspotPackage>(packages[1] ?? packages[0]!);
   const [phone, setPhone] = useState("");
   const [voucher, setVoucher] = useState("");
   const [stage, setStage] = useState<Stage>("idle");

@@ -239,3 +239,10 @@ add dst-host=api.flutterwave.com
 add name=kwetu-heartbeat interval=1m on-event="/tool fetch url=\\"https://${portalHost}/api/public/heartbeat?router=${routerName}\\" keep-result=no"
 `;
 }
+
+/** Safe lookup used by admin screens: falls back to the first configured tenant. */
+export function tenantOf(slug: string): TenantConfig {
+  return tenantConfigs[slug] ?? Object.values(tenantConfigs)[0]!;
+}
+
+export const firstTenantSlug: string = Object.keys(tenantConfigs)[0]!;

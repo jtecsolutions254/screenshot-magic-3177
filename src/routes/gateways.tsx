@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { StatusPill } from "@/components/status-pill";
-import { gatewayDrivers, tenantConfigs, type GatewayId } from "@/lib/tenant-config";
+import { gatewayDrivers, tenantConfigs, tenantOf, firstTenantSlug, type GatewayId } from "@/lib/tenant-config";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/gateways")({
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/gateways")({
 const slugs = Object.keys(tenantConfigs);
 
 function GatewaysPage() {
-  const [slug, setSlug] = useState(slugs[0]);
+  const [slug, setSlug] = useState(firstTenantSlug);
   const [active, setActive] = useState<GatewayId>("mpesa");
   const [values, setValues] = useState<Record<string, string>>({});
   const [connected, setConnected] = useState<Record<string, boolean>>({});
@@ -56,7 +56,7 @@ function GatewaysPage() {
     setTimeout(() => {
       setSaving(false);
       setConnected({ ...connected, [key]: true });
-      toast.success(`${driver.name} connected for ${tenantConfigs[slug].branding.name}`);
+      toast.success(`${driver.name} connected for ${tenantOf(slug).branding.name}`);
     }, 1400);
   }
 
@@ -81,7 +81,7 @@ function GatewaysPage() {
             business: slug,
             reference: ref,
             amount: Number(testAmount),
-            currency: tenantConfigs[slug].branding.currency,
+            currency: tenantOf(slug).branding.currency,
             phone: testPhone,
             status: "success",
             voucherIssued: `${ref}-1H`,
@@ -109,7 +109,7 @@ function GatewaysPage() {
         >
           {slugs.map((s) => (
             <option key={s} value={s}>
-              {tenantConfigs[s].branding.name}
+              {tenantOf(s).branding.name}
             </option>
           ))}
         </select>
@@ -174,7 +174,7 @@ function GatewaysPage() {
           {isConnected ? (
             <p className="mt-3 flex items-center gap-2 text-xs text-success">
               <CheckCircle2 className="size-4" /> Connected for{" "}
-              {tenantConfigs[slug].branding.name}
+              {tenantOf(slug).branding.name}
             </p>
           ) : null}
           <p className="mt-4 text-[11px] leading-relaxed text-muted-foreground">
@@ -196,7 +196,7 @@ function GatewaysPage() {
             </div>
             <div className="space-y-1.5">
               <Label className="text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                Amount ({tenantConfigs[slug].branding.currency})
+                Amount ({tenantOf(slug).branding.currency})
               </Label>
               <Input value={testAmount} onChange={(e) => setTestAmount(e.target.value)} inputMode="numeric" />
             </div>

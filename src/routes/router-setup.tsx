@@ -6,7 +6,7 @@ import { AdminShell } from "@/components/admin-shell";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { buildRouterScript, tenantConfigs } from "@/lib/tenant-config";
+import { buildRouterScript, tenantConfigs, tenantOf, firstTenantSlug } from "@/lib/tenant-config";
 import { StatusPill } from "@/components/status-pill";
 
 export const Route = createFileRoute("/router-setup")({
@@ -30,7 +30,7 @@ export const Route = createFileRoute("/router-setup")({
 const slugs = Object.keys(tenantConfigs);
 
 function RouterSetupPage() {
-  const [slug, setSlug] = useState(slugs[0]);
+  const [slug, setSlug] = useState(firstTenantSlug);
   const [routerName, setRouterName] = useState("MAIN-01");
   const [hotspotNetwork, setHotspotNetwork] = useState("192.168.88.0/24");
   const [wireguardIp, setWireguardIp] = useState("10.77.0.21");
@@ -39,7 +39,7 @@ function RouterSetupPage() {
   const [testing, setTesting] = useState(false);
   const [result, setResult] = useState<null | { uptime: string; clients: number; os: string }>(null);
 
-  const tenant = tenantConfigs[slug];
+  const tenant = tenantOf(slug);
 
   const script = useMemo(
     () =>
@@ -91,7 +91,7 @@ function RouterSetupPage() {
               >
                 {slugs.map((s) => (
                   <option key={s} value={s}>
-                    {tenantConfigs[s].branding.name}
+                    {tenantOf(s).branding.name}
                   </option>
                 ))}
               </select>
