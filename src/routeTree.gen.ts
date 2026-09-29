@@ -13,8 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessesRouteImport } from './routes/businesses'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as RouterSetupRouteImport } from './routes/router-setup'
 import { Route as RoutersRouteImport } from './routes/routers'
 import { Route as SubscribersRouteImport } from './routes/subscribers'
+import { Route as PortalSlugRouteImport } from './routes/portal.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -36,6 +38,11 @@ const PaymentsRoute = PaymentsRouteImport.update({
   path: '/payments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RouterSetupRoute = RouterSetupRouteImport.update({
+  id: '/router-setup',
+  path: '/router-setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoutersRoute = RoutersRouteImport.update({
   id: '/routers',
   path: '/routers',
@@ -46,22 +53,31 @@ const SubscribersRoute = SubscribersRouteImport.update({
   path: '/subscribers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortalSlugRoute = PortalSlugRouteImport.update({
+  id: '/portal/$slug',
+  path: '/portal/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,8 +85,10 @@ export interface FileRoutesById {
   '/businesses': typeof BusinessesRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
+  '/router-setup': typeof RouterSetupRoute
   '/routers': typeof RoutersRoute
   '/subscribers': typeof SubscribersRoute
+  '/portal/$slug': typeof PortalSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -79,24 +97,30 @@ export interface FileRouteTypes {
     | '/businesses'
     | '/onboarding'
     | '/payments'
+    | '/router-setup'
     | '/routers'
     | '/subscribers'
+    | '/portal/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/businesses'
     | '/onboarding'
     | '/payments'
+    | '/router-setup'
     | '/routers'
     | '/subscribers'
+    | '/portal/$slug'
   id:
     | '__root__'
     | '/'
     | '/businesses'
     | '/onboarding'
     | '/payments'
+    | '/router-setup'
     | '/routers'
     | '/subscribers'
+    | '/portal/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,8 +128,10 @@ export interface RootRouteChildren {
   BusinessesRoute: typeof BusinessesRoute
   OnboardingRoute: typeof OnboardingRoute
   PaymentsRoute: typeof PaymentsRoute
+  RouterSetupRoute: typeof RouterSetupRoute
   RoutersRoute: typeof RoutersRoute
   SubscribersRoute: typeof SubscribersRoute
+  PortalSlugRoute: typeof PortalSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -138,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/router-setup': {
+      id: '/router-setup'
+      path: '/router-setup'
+      fullPath: '/router-setup'
+      preLoaderRoute: typeof RouterSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/routers': {
       id: '/routers'
       path: '/routers'
@@ -152,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubscribersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portal/$slug': {
+      id: '/portal/$slug'
+      path: '/portal/$slug'
+      fullPath: '/portal/$slug'
+      preLoaderRoute: typeof PortalSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -160,8 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   BusinessesRoute: BusinessesRoute,
   OnboardingRoute: OnboardingRoute,
   PaymentsRoute: PaymentsRoute,
+  RouterSetupRoute: RouterSetupRoute,
   RoutersRoute: RoutersRoute,
   SubscribersRoute: SubscribersRoute,
+  PortalSlugRoute: PortalSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

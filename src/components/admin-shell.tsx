@@ -6,6 +6,10 @@ import {
   Users,
   CreditCard,
   Signal,
+  UserPlus,
+  PlugZap,
+  Wallet,
+  Wifi,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -14,9 +18,12 @@ import { cn } from "@/lib/utils";
 const nav: { to: string; label: string; icon: LucideIcon }[] = [
   { to: "/", label: "Overview", icon: LayoutDashboard },
   { to: "/businesses", label: "Businesses", icon: Building2 },
+  { to: "/onboarding", label: "New business", icon: UserPlus },
   { to: "/routers", label: "Routers", icon: RouterIcon },
+  { to: "/router-setup", label: "Connect router", icon: PlugZap },
   { to: "/subscribers", label: "Subscribers", icon: Users },
   { to: "/payments", label: "Payments", icon: CreditCard },
+  { to: "/gateways", label: "Payment setup", icon: Wallet },
 ];
 
 export function AdminShell({
