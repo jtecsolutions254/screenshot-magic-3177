@@ -21,6 +21,12 @@ import { Route as AuthenticatedAdminPaymentsRouteImport } from './routes/_authen
 import { Route as AuthenticatedAdminRouterSetupRouteImport } from './routes/_authenticated/admin/router-setup'
 import { Route as AuthenticatedAdminRoutersRouteImport } from './routes/_authenticated/admin/routers'
 import { Route as AuthenticatedAdminSubscribersRouteImport } from './routes/_authenticated/admin/subscribers'
+import { Route as AuthenticatedAppLocationsRouteImport } from './routes/_authenticated/app/locations'
+import { Route as AuthenticatedAppPaymentsRouteImport } from './routes/_authenticated/app/payments'
+import { Route as AuthenticatedAppPlansRouteImport } from './routes/_authenticated/app/plans'
+import { Route as AuthenticatedAppSessionsRouteImport } from './routes/_authenticated/app/sessions'
+import { Route as AuthenticatedAppStaffRouteImport } from './routes/_authenticated/app/staff'
+import { Route as AuthenticatedAppSubscribersRouteImport } from './routes/_authenticated/app/subscribers'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -88,11 +94,45 @@ const AuthenticatedAdminSubscribersRoute =
     path: '/subscribers',
     getParentRoute: () => AuthenticatedAdminRouteRoute,
   } as any)
+const AuthenticatedAppLocationsRoute =
+  AuthenticatedAppLocationsRouteImport.update({
+    id: '/locations',
+    path: '/locations',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppPaymentsRoute =
+  AuthenticatedAppPaymentsRouteImport.update({
+    id: '/payments',
+    path: '/payments',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppPlansRoute = AuthenticatedAppPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppSessionsRoute =
+  AuthenticatedAppSessionsRouteImport.update({
+    id: '/sessions',
+    path: '/sessions',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
+const AuthenticatedAppStaffRoute = AuthenticatedAppStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AuthenticatedAppRouteRoute,
+} as any)
+const AuthenticatedAppSubscribersRoute =
+  AuthenticatedAppSubscribersRouteImport.update({
+    id: '/subscribers',
+    path: '/subscribers',
+    getParentRoute: () => AuthenticatedAppRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedRouteRouteWithChildren
   '/admin': typeof AuthenticatedAdminRouteRouteWithChildren
-  '/app': typeof AuthenticatedAppRouteRoute
+  '/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
   '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
   '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
@@ -101,11 +141,17 @@ export interface FileRoutesByFullPath {
   '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/staff': typeof AuthenticatedAppStaffRoute
+  '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AuthenticatedRouteRouteWithChildren
-  '/app': typeof AuthenticatedAppRouteRoute
+  '/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
   '/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
   '/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
@@ -114,13 +160,19 @@ export interface FileRoutesByTo {
   '/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/app/plans': typeof AuthenticatedAppPlansRoute
+  '/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/app/staff': typeof AuthenticatedAppStaffRoute
+  '/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/admin': typeof AuthenticatedAdminRouteRouteWithChildren
-  '/_authenticated/app': typeof AuthenticatedAppRouteRoute
+  '/_authenticated/app': typeof AuthenticatedAppRouteRouteWithChildren
   '/portal/$slug': typeof PortalSlugRoute
   '/_authenticated/admin/businesses': typeof AuthenticatedAdminBusinessesRoute
   '/_authenticated/admin/gateways': typeof AuthenticatedAdminGatewaysRoute
@@ -129,6 +181,12 @@ export interface FileRoutesById {
   '/_authenticated/admin/router-setup': typeof AuthenticatedAdminRouterSetupRoute
   '/_authenticated/admin/routers': typeof AuthenticatedAdminRoutersRoute
   '/_authenticated/admin/subscribers': typeof AuthenticatedAdminSubscribersRoute
+  '/_authenticated/app/locations': typeof AuthenticatedAppLocationsRoute
+  '/_authenticated/app/payments': typeof AuthenticatedAppPaymentsRoute
+  '/_authenticated/app/plans': typeof AuthenticatedAppPlansRoute
+  '/_authenticated/app/sessions': typeof AuthenticatedAppSessionsRoute
+  '/_authenticated/app/staff': typeof AuthenticatedAppStaffRoute
+  '/_authenticated/app/subscribers': typeof AuthenticatedAppSubscribersRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -145,6 +203,12 @@ export interface FileRouteTypes {
     | '/admin/router-setup'
     | '/admin/routers'
     | '/admin/subscribers'
+    | '/app/locations'
+    | '/app/payments'
+    | '/app/plans'
+    | '/app/sessions'
+    | '/app/staff'
+    | '/app/subscribers'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -158,6 +222,12 @@ export interface FileRouteTypes {
     | '/admin/router-setup'
     | '/admin/routers'
     | '/admin/subscribers'
+    | '/app/locations'
+    | '/app/payments'
+    | '/app/plans'
+    | '/app/sessions'
+    | '/app/staff'
+    | '/app/subscribers'
     | '/admin'
   id:
     | '__root__'
@@ -172,6 +242,12 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/router-setup'
     | '/_authenticated/admin/routers'
     | '/_authenticated/admin/subscribers'
+    | '/_authenticated/app/locations'
+    | '/_authenticated/app/payments'
+    | '/_authenticated/app/plans'
+    | '/_authenticated/app/sessions'
+    | '/_authenticated/app/staff'
+    | '/_authenticated/app/subscribers'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -266,6 +342,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminSubscribersRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/app/locations': {
+      id: '/_authenticated/app/locations'
+      path: '/locations'
+      fullPath: '/app/locations'
+      preLoaderRoute: typeof AuthenticatedAppLocationsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/payments': {
+      id: '/_authenticated/app/payments'
+      path: '/payments'
+      fullPath: '/app/payments'
+      preLoaderRoute: typeof AuthenticatedAppPaymentsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/plans': {
+      id: '/_authenticated/app/plans'
+      path: '/plans'
+      fullPath: '/app/plans'
+      preLoaderRoute: typeof AuthenticatedAppPlansRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/sessions': {
+      id: '/_authenticated/app/sessions'
+      path: '/sessions'
+      fullPath: '/app/sessions'
+      preLoaderRoute: typeof AuthenticatedAppSessionsRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/staff': {
+      id: '/_authenticated/app/staff'
+      path: '/staff'
+      fullPath: '/app/staff'
+      preLoaderRoute: typeof AuthenticatedAppStaffRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
+    '/_authenticated/app/subscribers': {
+      id: '/_authenticated/app/subscribers'
+      path: '/subscribers'
+      fullPath: '/app/subscribers'
+      preLoaderRoute: typeof AuthenticatedAppSubscribersRouteImport
+      parentRoute: typeof AuthenticatedAppRouteRoute
+    }
   }
 }
 
@@ -297,14 +415,37 @@ const AuthenticatedAdminRouteRouteWithChildren =
     AuthenticatedAdminRouteRouteChildren,
   )
 
+interface AuthenticatedAppRouteRouteChildren {
+  AuthenticatedAppLocationsRoute: typeof AuthenticatedAppLocationsRoute
+  AuthenticatedAppPaymentsRoute: typeof AuthenticatedAppPaymentsRoute
+  AuthenticatedAppPlansRoute: typeof AuthenticatedAppPlansRoute
+  AuthenticatedAppSessionsRoute: typeof AuthenticatedAppSessionsRoute
+  AuthenticatedAppStaffRoute: typeof AuthenticatedAppStaffRoute
+  AuthenticatedAppSubscribersRoute: typeof AuthenticatedAppSubscribersRoute
+}
+
+const AuthenticatedAppRouteRouteChildren: AuthenticatedAppRouteRouteChildren = {
+  AuthenticatedAppLocationsRoute: AuthenticatedAppLocationsRoute,
+  AuthenticatedAppPaymentsRoute: AuthenticatedAppPaymentsRoute,
+  AuthenticatedAppPlansRoute: AuthenticatedAppPlansRoute,
+  AuthenticatedAppSessionsRoute: AuthenticatedAppSessionsRoute,
+  AuthenticatedAppStaffRoute: AuthenticatedAppStaffRoute,
+  AuthenticatedAppSubscribersRoute: AuthenticatedAppSubscribersRoute,
+}
+
+const AuthenticatedAppRouteRouteWithChildren =
+  AuthenticatedAppRouteRoute._addFileChildren(
+    AuthenticatedAppRouteRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
-  AuthenticatedAppRouteRoute: typeof AuthenticatedAppRouteRoute
+  AuthenticatedAppRouteRoute: typeof AuthenticatedAppRouteRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
-  AuthenticatedAppRouteRoute: AuthenticatedAppRouteRoute,
+  AuthenticatedAppRouteRoute: AuthenticatedAppRouteRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =

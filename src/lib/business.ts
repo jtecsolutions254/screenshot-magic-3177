@@ -65,3 +65,9 @@ export function slugify(s: string) {
     .replace(/^-+|-+$/g, "")
     .slice(0, 40);
 }
+
+export function durationText(min: number) {
+  if (min < 60) return `${min} min`;
+  if (min < 1440) return `${Math.round(min / 60)} h`;
+  return `${Math.round(min / 1440)} day(s)`;
+}

@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { OwnerShell } from "@/components/owner-shell";
 import { WithBusiness } from "@/components/with-business";
 import { TenantResource } from "@/components/tenant-resource";
-import { money } from "@/lib/business";
-
-export function durationText(min: number) {
-  if (min < 60) return `${min} min`;
-  if (min < 1440) return `${Math.round(min / 60)} h`;
-  return `${Math.round(min / 1440)} day(s)`;
-}
+import { money, durationText } from "@/lib/business";
 
 export const Route = createFileRoute("/_authenticated/app/plans")({
   head: () => ({ meta: [{ title: "Internet plans — Kwetu Connection" }] }),
