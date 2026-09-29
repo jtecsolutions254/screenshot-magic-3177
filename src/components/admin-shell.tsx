@@ -1,4 +1,6 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
+import { signOut } from "@/components/owner-shell";
 import {
   LayoutDashboard,
   Building2,
@@ -10,6 +12,7 @@ import {
   PlugZap,
   Wallet,
   Wifi,
+  LogOut,
   type LucideIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
@@ -36,6 +39,8 @@ export function AdminShell({
   children: ReactNode;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const qc = useQueryClient();
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-background">
@@ -77,6 +82,12 @@ export function AdminShell({
           </nav>
 
           <div className="mt-auto space-y-3">
+            <button
+              onClick={() => signOut(qc, navigate)}
+              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              <LogOut className="size-4" /> Sign out
+            </button>
             <Link
               to="/portal/$slug"
               params={{ slug: "kwetunet" }}
