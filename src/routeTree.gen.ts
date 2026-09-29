@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessesRouteImport } from './routes/businesses'
+import { Route as GatewaysRouteImport } from './routes/gateways'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as RouterSetupRouteImport } from './routes/router-setup'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const BusinessesRoute = BusinessesRouteImport.update({
   id: '/businesses',
   path: '/businesses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GatewaysRoute = GatewaysRouteImport.update({
+  id: '/gateways',
+  path: '/gateways',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -62,6 +68,7 @@ const PortalSlugRoute = PortalSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/router-setup': typeof RouterSetupRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/router-setup': typeof RouterSetupRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/businesses': typeof BusinessesRoute
+  '/gateways': typeof GatewaysRoute
   '/onboarding': typeof OnboardingRoute
   '/payments': typeof PaymentsRoute
   '/router-setup': typeof RouterSetupRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/businesses'
+    | '/gateways'
     | '/onboarding'
     | '/payments'
     | '/router-setup'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/businesses'
+    | '/gateways'
     | '/onboarding'
     | '/payments'
     | '/router-setup'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/businesses'
+    | '/gateways'
     | '/onboarding'
     | '/payments'
     | '/router-setup'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BusinessesRoute: typeof BusinessesRoute
+  GatewaysRoute: typeof GatewaysRoute
   OnboardingRoute: typeof OnboardingRoute
   PaymentsRoute: typeof PaymentsRoute
   RouterSetupRoute: typeof RouterSetupRoute
@@ -148,6 +161,13 @@ declare module '@tanstack/react-router' {
       path: '/businesses'
       fullPath: '/businesses'
       preLoaderRoute: typeof BusinessesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gateways': {
+      id: '/gateways'
+      path: '/gateways'
+      fullPath: '/gateways'
+      preLoaderRoute: typeof GatewaysRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BusinessesRoute: BusinessesRoute,
+  GatewaysRoute: GatewaysRoute,
   OnboardingRoute: OnboardingRoute,
   PaymentsRoute: PaymentsRoute,
   RouterSetupRoute: RouterSetupRoute,
