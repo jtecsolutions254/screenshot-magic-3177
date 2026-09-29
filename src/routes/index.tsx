@@ -120,11 +120,21 @@ function Overview() {
                   fontSize={12}
                 />
                 <YAxis
+                  yAxisId="left"
                   stroke="var(--color-muted-foreground)"
                   tickLine={false}
                   axisLine={false}
                   fontSize={12}
                   width={64}
+                />
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                  stroke="var(--color-muted-foreground)"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={12}
+                  width={48}
                 />
                 <Tooltip
                   contentStyle={{
@@ -137,6 +147,7 @@ function Overview() {
                 />
                 <Area
                   type="monotone"
+                  yAxisId="left"
                   dataKey="revenue"
                   stroke="var(--color-chart-1)"
                   fill="url(#rev)"
@@ -144,6 +155,7 @@ function Overview() {
                 />
                 <Area
                   type="monotone"
+                  yAxisId="right"
                   dataKey="sessions"
                   stroke="var(--color-chart-2)"
                   fill="url(#ses)"
