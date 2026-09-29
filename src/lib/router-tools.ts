@@ -3,7 +3,7 @@ import { buildRouterScript } from "@/lib/tenant-config";
 import type { Business } from "@/lib/business";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 export function randomSecret() {
   return Array.from(crypto.getRandomValues(new Uint8Array(12)), (x) => x.toString(16).padStart(2, "0")).join("");

@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_authenticated/app/routers")({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function Routers({ business }: { business: Business }) {
   const { data: routers = [] } = useTenantRows<Row>("routers", business.id);
@@ -39,7 +39,7 @@ function Routers({ business }: { business: Business }) {
 
   async function add(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim()) return toast.error("Give the router a name");
+    if (!name.trim()) { toast.error("Give the router a name"); return; }
     const { error } = await supabase.from("routers").insert({
       business_id: business.id,
       name: name.trim(),
@@ -48,7 +48,7 @@ function Routers({ business }: { business: Business }) {
       tunnel_ip: `10.77.${Math.floor(Math.random() * 250) + 1}.${Math.floor(Math.random() * 250) + 2}`,
       radius_secret: randomSecret(),
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setName("");
     invalidate("routers");
     toast.success("Router added — copy its setup code next");

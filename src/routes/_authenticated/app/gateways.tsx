@@ -24,7 +24,7 @@ export const Route = createFileRoute("/_authenticated/app/gateways")({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function Gateways({ business }: { business: Business }) {
   const { data: rows = [] } = useTenantRows<Row>("gateway_settings", business.id);
@@ -43,7 +43,7 @@ function GatewayCard({ driver, business, existing }: { driver: GatewayDriver; bu
 
   async function save() {
     const missing = driver.fields.find((f) => !values[f.key] && !existing);
-    if (missing) return toast.error(`${missing.label} is required`);
+    if (missing) { toast.error(`${missing.label} is required`); return; }
     const { error } = await supabase.from("gateway_settings").upsert(
       {
         business_id: business.id,
@@ -53,7 +53,7 @@ function GatewayCard({ driver, business, existing }: { driver: GatewayDriver; bu
       },
       { onConflict: "business_id,provider" },
     );
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(`${driver.name} connected`);
     setValues({});
     invalidate("gateway_settings");

@@ -46,7 +46,7 @@ const steps = [
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function SetupPage() {
   const { data: business, isLoading } = useMyBusiness();
@@ -138,7 +138,7 @@ function BusinessStep({ business, onDone }: { business: Business | null; onDone:
   const [busy, setBusy] = useState(false);
 
   async function submit() {
-    if (!values.name?.trim()) return toast.error("Business name is required");
+    if (!values.name?.trim()) { toast.error("Business name is required"); return; }
     setBusy(true);
     if (business) {
       const ok = await saveBusiness(business.id, values);
@@ -169,7 +169,7 @@ function BusinessStep({ business, onDone }: { business: Business | null; onDone:
       }
       if (!error.message.includes("duplicate")) {
         setBusy(false);
-        return toast.error(error.message);
+        { toast.error(error.message); return; }
       }
       slug = `${base}-${Math.floor(Math.random() * 900 + 100)}`;
     }
@@ -194,11 +194,11 @@ function LocationStep({ business, onDone }: { business: Business; onDone: () => 
   const [address, setAddress] = useState("");
 
   async function add() {
-    if (!name.trim()) return toast.error("Give the location a name");
+    if (!name.trim()) { toast.error("Give the location a name"); return; }
     const { error } = await supabase
       .from("locations")
       .insert({ business_id: business.id, name: name.trim(), address: address || null });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     setName("");
     setAddress("");
     invalidate("locations");
@@ -264,7 +264,7 @@ function PlansStep({ business, onDone }: { business: Business; onDone: () => voi
 
   async function insert(rows: Row[]) {
     const { error } = await supabase.from("plans").insert(rows.map((r) => ({ ...r, business_id: business.id })) as never);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     invalidate("plans");
   }
 
@@ -282,7 +282,7 @@ function PlansStep({ business, onDone }: { business: Business; onDone: () => voi
         <Button
           variant="secondary"
           onClick={() => {
-            if (!name || !price) return toast.error("Name and price are required");
+            if (!name || !price) { toast.error("Name and price are required"); return; }
             insert([{ name, price: Number(price), duration_minutes: Number(minutes) || 60 }]);
             setName("");
             setPrice("");
@@ -322,7 +322,7 @@ function RouterStep({ business, onDone }: { business: Business; onDone: () => vo
   const router = routers[0];
 
   async function add() {
-    if (!name.trim()) return toast.error("Give the router a name");
+    if (!name.trim()) { toast.error("Give the router a name"); return; }
     const { error } = await supabase.from("routers").insert({
       business_id: business.id,
       location_id: locs[0]?.id ?? null,
@@ -330,7 +330,7 @@ function RouterStep({ business, onDone }: { business: Business; onDone: () => vo
       tunnel_ip: `10.77.${Math.floor(Math.random() * 250) + 1}.2`,
       radius_secret: randomSecret(),
     });
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     invalidate("routers");
   }
 

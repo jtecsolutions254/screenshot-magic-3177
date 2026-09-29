@@ -17,7 +17,7 @@ export const Route = createFileRoute("/_authenticated/app/")({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function Dashboard({ business }: { business: Business }) {
   const { data: payments = [] } = useTenantRows<Row>("payments", business.id);

@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_authenticated/app/vouchers")({
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 function code() {
   const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
@@ -37,13 +37,13 @@ function Vouchers({ business }: { business: Business }) {
   const [busy, setBusy] = useState(false);
 
   async function generate() {
-    if (!planId) return toast.error("Choose a plan");
+    if (!planId) { toast.error("Choose a plan"); return; }
     const n = Math.min(Math.max(count, 1), 200);
     setBusy(true);
     const rows = Array.from({ length: n }, () => ({ business_id: business.id, plan_id: planId, code: code() }));
     const { error } = await supabase.from("vouchers").insert(rows);
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success(`${n} vouchers created`);
     invalidate("vouchers");
   }

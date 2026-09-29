@@ -96,7 +96,7 @@ export function BizFieldsGrid({
 
 export async function saveBusiness(id: string, patch: Record<string, unknown>) {
   const clean = Object.fromEntries(Object.entries(patch).map(([k, v]) => [k, v === "" ? null : v]));
-  const { error } = await supabase.from("businesses").update(clean).eq("id", id);
+  const { error } = await supabase.from("businesses").update(clean as never).eq("id", id);
   if (error) {
     toast.error(error.message);
     return false;
@@ -129,7 +129,7 @@ export function BusinessEditor({ business, fields }: { business: Business; field
   );
 }
 
-export function PortalPreview({ values }: { values: Record<string, string> }) {
+export function PortalPreview({ values }: { values: Partial<Record<BizKey, string>> }) {
   const primary = values.primary_color || "#22d3ee";
   return (
     <div

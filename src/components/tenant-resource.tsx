@@ -18,7 +18,7 @@ export interface Field {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Row = Record<string, any>;
+type Row = any;
 
 export interface Column {
   label: string;
@@ -72,7 +72,7 @@ export function TenantResource({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { error } = await supabase.from(table).insert(payload as any);
     setSaving(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("Saved");
     setValues(initial());
     setOpen(false);
@@ -81,7 +81,7 @@ export function TenantResource({
 
   async function remove(id: string) {
     const { error } = await supabase.from(table).delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     invalidate(table);
   }
 
